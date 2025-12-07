@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>EV ConnectHub - Share Power, Earn Money
+    </title>
+    <meta name="description"
+        content="Find EV charging stations near you or register your own charger to earn money. The Airbnb of EV charging.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-color: #0B1120;
+            /* Deep Dark Blue */
+            --bg-secondary: #151F32;
+            --primary-color: #00E676;
+            /* Electric Green */
+            --primary-hover: #00C853;
+            --text-white: #ffffff;
+            --text-gray: #94A3B8;
+            --card-border: rgba(255, 255, 255, 0.1);
+            --gradient-hero: radial-gradient(circle at top right, rgba(0, 230, 118, 0.15), transparent 40%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .highlight {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(0, 230, 118, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 230, 118, 0.5);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-header p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 50;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--primary-color);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 100px;
+            background: var(--gradient-hero);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--text-gray);
+            margin-bottom: 32px;
+            max-width: 500px;
+        }
+
+        /* MOCKUP STYLES */
+        .mockup-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .phone-frame {
+            width: 300px;
+            height: 600px;
+            background: #000;
+            border-radius: 40px;
+            border: 8px solid #2C3E50;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .screen {
+            background: #1e293b;
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* CSS Map Representation */
+        .map-bg {
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(#334155 1px, transparent 1px),
+                radial-gradient(#334155 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            position: absolute;
+        }
+
+        .map-pin {
+            position: absolute;
+            color: var(--primary-color);
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+        }
+
+        .map-card {
+            position: absolute;
+            bottom: 30px;
+            left: 20px;
+            right: 20px;
+            background: #0f172a;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--primary-color);
+        }
+
+        .map-card h4 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .map-card .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .map-card small {
+            color: #64748b;
+            display: block;
+            margin-top: 5px;
+        }
+
+        /* --- SPLIT FEATURES SECTION --- */
+        .features {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .feature-box {
+            background: var(--bg-color);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: 0.3s;
+        }
+
+        .feature-box:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 230, 118, 0.1);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            color: var(--text-gray);
+            margin-bottom: 25px;
+        }
+
+        .feature-box ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #d1d5db;
+        }
+
+        .feature-box ul li i {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+
+        /* --- HOW IT WORKS (MONETIZATION) --- */
+        .monetization {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            gap: 30px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 250px;
+            position: relative;
+        }
+
+        .step-num {
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+        }
+
+        .step-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1593941707882-a5bba14938c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+
+            .split-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-container {
+                flex-direction: column;
+            }
+
+            .mockup-wrapper {
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i
+                        class="fa-solid fa-charging-station"></i>
+                    EV ConnectHub
+                </div>
+                <a href="https://apps.apple.com/pk/app/ev-connecthub/id6458836437"
+                    class="btn btn-primary"
+                    style="padding: 10px 24px; font-size: 0.9rem;">
+                    Download App
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Power Your Journey,<br><span
+                        class="highlight">Earn
+                        From Your Plug.</span>
+                </h1>
+                <p>The community-driven network.
+                    Find reliable charging
+                    stations anywhere, or list
+                    your own home charger to earn
+                    passive income.</p>
+
+                <div
+                    style="display: flex; gap: 15px; flex-wrap: wrap; justify-content: flex-start;">
+                    <a href="https://apps.apple.com/pk/app/ev-connecthub/id6458836437"
+                        class="btn btn-primary">
+                        <i
+                            class="fa-brands fa-apple"></i>
+                        Get for iOS
+                    </a>
+                </div>
+                <div
+                    style="margin-top: 20px; font-size: 0.9rem; color: #64748b;">
+                    <i class="fa-solid fa-check-circle"
+                        style="color: var(--primary-color); margin-right: 5px;"></i>
+                    Peer-to-Peer Charging
+                    <span
+                        style="margin: 0 10px;">|</span>
+                    <i class="fa-solid fa-check-circle"
+                        style="color: var(--primary-color); margin-right: 5px;"></i>
+                    Instant Payments
+                </div>
+            </div>
+
+            <div class="mockup-wrapper">
+                <div class="phone-frame">
+                    <div class="screen">
+                        <div class="map-bg"></div>
+
+                        <div class="map-pin"
+                            style="top: 30%; left: 40%;">
+                            <i
+                                class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="map-pin"
+                            style="top: 50%; left: 70%; color: #fff;">
+                            <i
+                                class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="map-pin"
+                            style="top: 20%; left: 20%; color: #fff;">
+                            <i
+                                class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="map-pin"
+                            style="top: 60%; left: 30%; color: #fff;">
+                            <i
+                                class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div class="map-card">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: start;">
+                                <div>
+                                    <h4>Home
+                                        Charger
+                                        (Level 2)
+                                    </h4>
+                                    <small>0.5
+                                        miles away
+                                        •
+                                        Available
+                                        Now</small>
+                                </div>
+                                <div
+                                    style="background: rgba(0, 230, 118, 0.2); color: var(--primary-color); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">
+                                    verified
+                                </div>
+                            </div>
+                            <hr
+                                style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 10px 0;">
+                            <div
+                                style="display: flex; justify-content: space-between; align-items: center;">
+                                <div
+                                    class="price">
+                                    $5.00 <span
+                                        style="font-size: 0.8rem; color: #888; font-weight: normal;">/
+                                        hour</span>
+                                </div>
+                                <button
+                                    style="background: var(--primary-color); border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer;">Book</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Two Ways to Connect</h2>
+                <p>Whether you need a charge or
+                    have a plug, we've got you
+                    covered.</p>
+            </div>
+
+            <div class="split-grid">
+                <div class="feature-box">
+                    <div class="icon-circle">
+                        <i
+                            class="fa-solid fa-car-side"></i>
+                    </div>
+                    <h3>For EV Drivers</h3>
+                    <p>Stop worrying about range
+                        anxiety. Find private and
+                        public chargers in places
+                        standard maps miss.</p>
+                    <ul>
+                        <li><i
+                                class="fa-solid fa-bolt"></i>
+                            Real-time availability
+                        </li>
+                        <li><i
+                                class="fa-solid fa-filter"></i>
+                            Filter by plug type
+                            (J1772, CCS, Tesla)
+                        </li>
+                        <li><i
+                                class="fa-solid fa-money-bill-wave"></i>
+                            Transparent hourly
+                            pricing</li>
+                    </ul>
+                </div>
+
+                <div class="feature-box"
+                    style="border-color: var(--primary-color); background: rgba(0, 230, 118, 0.02);">
+                    <div class="icon-circle">
+                        <i
+                            class="fa-solid fa-house-chimney-user"></i>
+                    </div>
+                    <h3>For Charger Hosts</h3>
+                    <p>Turn your idle EV charger
+                        or outdoor outlet into a
+                        revenue stream. Set your
+                        own rules and rates.</p>
+                    <ul>
+                        <li><i
+                                class="fa-solid fa-tag"></i>
+                            Set your own price per
+                            hour</li>
+                        <li><i
+                                class="fa-solid fa-calendar-check"></i>
+                            Manage availability
+                            schedule</li>
+                        <li><i
+                                class="fa-solid fa-wallet"></i>
+                            Automatic payouts to
+                            your wallet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="monetization">
+        <div class="container">
+            <div class="section-header">
+                <h2>How to Start Earning</h2>
+                <p>Registering your charger takes
+                    less than 5 minutes.</p>
+            </div>
+
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-num">01</div>
+                    <div class="step-content">
+                        <i class="fa-solid fa-id-card"
+                            style="font-size: 2rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h4>Register Profile</h4>
+                        <p>Sign up and add your
+                            location details.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">02</div>
+                    <div class="step-content">
+                        <i class="fa-solid fa-plug"
+                            style="font-size: 2rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h4>Add Charger</h4>
+                        <p>Upload photos and set
+                            your hourly rate.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-num">03</div>
+                    <div class="step-content">
+                        <i class="fa-solid fa-sack-dollar"
+                            style="font-size: 2rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                        <h4>Get Paid</h4>
+                        <p>Approve booking
+                            requests and earn
+                            instantly.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2
+                style="font-size: 2.5rem; margin-bottom: 20px;">
+                Join the Charging Revolution</h2>
+            <p
+                style="margin-bottom: 40px; color: #ccc;">
+                Available now on the App Store.
+            </p>
+            <a href="https://apps.apple.com/pk/app/ev-connecthub/id6458836437"
+                class="btn btn-primary">
+                Download Now
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Support</a>
+            </div>
+            <p
+                style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6;">
+                &copy; 2025 EV ConnectHub. All
+                rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

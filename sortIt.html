@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+    <title>Sort Math - Fun Educational Game for
+        Kids</title>
+    <meta name="description"
+        content="Sort Math is a fun and educational game for kids to learn sorting numbers, alphabets, roman numerals, prime numbers, and more. Download now on the App Store!">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #E0F7FA;
+            /* Light blue background */
+            --primary-color: #FF6B6B;
+            /* Playful Red */
+            --secondary-color: #4ECDC4;
+            /* Teal */
+            --accent-yellow: #FFE66D;
+            /* Sunny Yellow */
+            --accent-blue: #1A535C;
+            /* Dark Blue for text */
+            --text-color: #2d3436;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234ecdc4' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 3px solid #ff4757;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            background-color: #ff4757;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            color: #555;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            color: var(--secondary-color);
+            font-size: 2rem;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            max-width: 500px;
+            color: #555;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Floating Game Elements Animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .fe-1 {
+            top: 10%;
+            left: 0;
+            background: var(--accent-yellow);
+            color: var(--accent-blue);
+            animation-delay: 0s;
+        }
+
+        .fe-2 {
+            top: 40%;
+            right: 5%;
+            background: var(--primary-color);
+            color: white;
+            animation-delay: 1s;
+        }
+
+        .fe-3 {
+            bottom: 10%;
+            left: 20%;
+            background: var(--secondary-color);
+            color: white;
+            animation-delay: 2s;
+        }
+
+        /* Placeholder for App Screenshot */
+        .app-screenshot-placeholder {
+            width: 300px;
+            height: 600px;
+            background: #fff;
+            border-radius: 40px;
+            border: 12px solid var(--accent-blue);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Drawn Game Interface */
+        .game-screen {
+            width: 100%;
+            height: 100%;
+            background: #E3F2FD;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gs-header {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            margin-bottom: 30px;
+        }
+
+        .gs-bucket {
+            width: 45%;
+            height: 100px;
+            background: #BBDEFB;
+            border: 3px dashed #1976D2;
+            border-radius: 15px;
+            margin: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1976D2;
+        }
+
+        .gs-buckets-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .gs-tile {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 5px 0 #c0392b;
+            margin: 0 auto;
+            cursor: grab;
+        }
+
+        /* --- FEATURES SECTION --- */
+        .features {
+            padding: 100px 0;
+            background: #ffffff;
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            top: -50px;
+            /* Overlap effect */
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-color);
+            padding: 40px 30px;
+            border-radius: 30px;
+            text-align: center;
+            transition: 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 15px 30px rgba(78, 205, 196, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: #fff;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .fc-1 .feature-icon {
+            color: #FF6B6B;
+        }
+
+        .fc-2 .feature-icon {
+            color: #4ECDC4;
+        }
+
+        .fc-3 .feature-icon {
+            color: #FFD166;
+        }
+
+        .fc-4 .feature-icon {
+            color: #1A535C;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background: var(--accent-blue);
+            color: white;
+            border-radius: 50px 50px 0 0;
+        }
+
+        .footer-links {
+            margin-bottom: 25px;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 40px;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 60px;
+                order: 2;
+                /* Put text below image on mobile */
+            }
+
+            .hero-image {
+                order: 1;
+                margin-bottom: 40px;
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .app-screenshot-placeholder {
+                width: 260px;
+                height: 520px;
+            }
+
+            .floating-element {
+                display: none;
+                /* Hide floating elements on small screens for cleaner look */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i
+                        class="fa-solid fa-shapes"></i>
+                    Sort Math
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container"
+            style="display: flex; flex-wrap: wrap; align-items: center;">
+            <div class="hero-content">
+                <h1>Unlock Sorting
+                    Skills<br><span>The Fun
+                        Way!</span></h1>
+                <p>Discover the exciting world of
+                    math through sorting games.
+                    Perfect for kids to learn
+                    numbers, alphabets, shapes,
+                    and more in an interactive
+                    environment.</p>
+                <a href="https://apps.apple.com/pk/app/sort-math/id6462795884"
+                    class="btn btn-primary"
+                    target="_blank">
+                    <i class="fa-brands fa-apple"
+                        style="margin-right: 10px; font-size: 1.5rem;"></i>
+                    Download on App Store
+                </a>
+            </div>
+
+            <div class="hero-image">
+                <div
+                    class="floating-element fe-1">
+                    A B C</div>
+                <div
+                    class="floating-element fe-2">
+                    1 2 3</div>
+                <div
+                    class="floating-element fe-3">
+                    IV V X</div>
+
+                <div
+                    class="app-screenshot-placeholder">
+                    <div class="game-screen">
+                        <div class="gs-header">
+                            LEVEL 3: SORT NUMBERS
+                        </div>
+
+                        <div
+                            class="gs-buckets-container">
+                            <div class="gs-bucket"
+                                style="background: #FFCDD2; border-color: #C62828; color: #C62828;">
+                                PRIME<br>NUMBERS
+                            </div>
+                            <div class="gs-bucket"
+                                style="background: #C8E6C9; border-color: #2E7D32; color: #2E7D32;">
+                                COMPOSITE<br>NUMBERS
+                            </div>
+                        </div>
+
+                        <div
+                            style="flex-grow: 1; display: flex; align-items: center;">
+                            <div class="gs-tile">7
+                            </div>
+                        </div>
+
+                        <div
+                            style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 20px;">
+                            Drag the number to the
+                            correct box!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">What Can You
+                Sort?</h2>
+            <p class="section-subtitle">Explore a
+                wide variety of fun and
+                educational sorting challenges
+                designed to boost cognitive
+                skills.</p>
+
+            <div class="features-grid">
+                <div class="feature-card fc-1">
+                    <div class="feature-icon">
+                        <i
+                            class="fa-solid fa-arrow-down-1-9"></i>
+                    </div>
+                    <h3>Number Sorting</h3>
+                    <p>Arrange numbers in
+                        ascending or descending
+                        order. Learn about whole
+                        numbers, decimals, and
+                        more.</p>
+                </div>
+
+                <div class="feature-card fc-2">
+                    <div class="feature-icon">
+                        <i
+                            class="fa-solid fa-font"></i>
+                    </div>
+                    <h3>Alphabet Fun</h3>
+                    <p>Sort letters from A to Z,
+                        match uppercase with
+                        lowercase, and boost early
+                        literacy skills.</p>
+                </div>
+
+                <div class="feature-card fc-3">
+                    <div class="feature-icon">
+                        <span
+                            style="font-family: serif; font-weight: bold;">IV</span>
+                    </div>
+                    <h3>Roman Numerals</h3>
+                    <p>Travel back in time and
+                        discover how to read and
+                        sort ancient Roman
+                        numerals like I, V, X, and
+                        L.</p>
+                </div>
+
+                <div class="feature-card fc-4">
+                    <div class="feature-icon">
+                        <i
+                            class="fa-solid fa-divide"></i>
+                    </div>
+                    <h3>Special Numbers</h3>
+                    <p>Challenge yourself by
+                        identifying and sorting
+                        specific groups like Prime
+                        Numbers and Even/Odd
+                        numbers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo"
+                style="justify-content: center; color: white; margin-bottom: 20px;">
+                <i class="fa-solid fa-shapes"
+                    style="color: var(--accent-yellow);"></i>
+                Sort Math
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Support</a>
+            </div>
+            <p class="copyright">&copy; 2025 Umar
+                Mukhtar Khan. All rights reserved.
+                Designed for Kids 4+.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
