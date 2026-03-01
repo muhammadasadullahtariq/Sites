@@ -3,120 +3,89 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-    <title>Snap Trade - AI Crypto Chart Analysis
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Snap Trade | Automated Crypto Trading Journal & Screenshot Scanner</title>
+    <meta name="title" content="Snap Trade | Automated Crypto Trading Journal & Screenshot Scanner">
     <meta name="description"
-        content="Upload crypto chart screenshots and get instant AI trade setups. Long/Short, Entry, and Stop Loss analysis in seconds.">
+        content="Stop typing trades manually. Snap Trade uses advanced OCR to extract Long/Short positions, PnL, and entry/exit prices from Binance, Bybit, and Coinbase screenshots.">
+    <meta name="keywords"
+        content="crypto trading journal, trade tracker, binance screenshot scanner, bybit journal, crypto portfolio tracker, ocr trade scanner">
+    <meta name="author" content="Snap Trade">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://snaptrade.linkapp.one/">
+    <meta property="og:title" content="Snap Trade | Automated Crypto Trading Journal">
+    <meta property="og:description"
+        content="Instantly convert crypto exchange screenshots into a detailed trading journal. Supported on Binance, Bybit, and Coinbase.">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="canonical" href="https://snaptrade.linkapp.one/">
 
     <style>
-        /* --- VARIABLES & RESET --- */
+        /* CSS Variables (Crypto Dark Mode) */
         :root {
-            --bg-color: #050505;
-            --surface-color: #121212;
-            --surface-highlight: #1e1e1e;
-            --primary-color: #00ff88;
-            /* Neon Green */
-            --primary-dark: #00cc6a;
-            --secondary-color: #ff3b30;
-            /* Stop Loss Red */
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-color: #333;
-            --gradient-glow: radial-gradient(circle at center, rgba(0, 255, 136, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+            --bg-color: #0b0e11;
+            --surface-color: #1e2329;
+            --accent-color: #fcd535;
+            --accent-hover: #e0bd2e;
+            --text-primary: #eaecef;
+            --text-secondary: #848e9c;
         }
 
-        * {
+        /* Modern CSS Reset */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-main);
+            color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        h1,
+        h2,
+        h3 {
+            line-height: 1.2;
+            margin-bottom: 1rem;
         }
 
-        ul {
-            list-style: none;
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
         }
 
-        /* --- UTILITIES --- */
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 20px;
         }
 
-        .text-gradient {
-            background: linear-gradient(to right, #fff, #a0a0a0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-primary {
-            color: var(--primary-color);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 32px;
-            font-weight: 600;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            gap: 10px;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: #000;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
-        }
-
-        .btn-outline {
-            border: 1px solid var(--border-color);
-            background: rgba(255, 255, 255, 0.05);
-            color: white;
-        }
-
-        .btn-outline:hover {
-            border-color: white;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        /* --- HEADER --- */
+        /* Navigation */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         nav {
@@ -126,309 +95,171 @@
         }
 
         .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: -1px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: var(--primary-color);
-        }
-
-        /* --- HERO SECTION --- */
+        /* Hero Section */
         .hero {
-            padding-top: 180px;
-            padding-bottom: 100px;
-            position: relative;
-            text-align: center;
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            min-height: 80vh;
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 800px;
-            height: 600px;
-            background: var(--gradient-glow);
-            z-index: -1;
-            pointer-events: none;
+        .hero-content {
+            flex: 1;
         }
 
-        .hero h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-buttons {
+        .hero-image {
+            flex: 1;
             display: flex;
             justify-content: center;
-            gap: 20px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .highlight {
+            color: var(--accent-color);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--accent-color);
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Secondary Button (Outlined) */
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--accent-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(252, 213, 53, 0.1);
+        }
+
+        /* Nav Button (Smaller) */
+        .btn-nav {
+            padding: 10px 20px;
+            font-size: 0.95rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
             flex-wrap: wrap;
         }
 
-        /* --- MOCKUP SECTION --- */
-        .app-preview {
-            margin-top: 80px;
-            position: relative;
-            display: flex;
-            justify-content: center;
+        /* Features Grid */
+        .features {
+            padding: 80px 0;
+            background-color: var(--surface-color);
         }
 
-        .mockup-container {
-            width: 320px;
-            height: 650px;
-            background: #000;
-            border: 8px solid #2a2a2a;
-            border-radius: 40px;
-            position: relative;
-            box-shadow: 0 50px 100px -20px rgba(0, 0, 0, 0.8);
-            overflow: hidden;
-        }
-
-        /* CSS Drawn App Interface */
-        .mockup-screen {
-            width: 100%;
-            height: 100%;
-            background: #111;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .ms-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            color: #fff;
-            font-size: 0.9rem;
-        }
-
-        .ms-chart-placeholder {
-            width: 100%;
-            height: 180px;
-            background: linear-gradient(180deg, rgba(0, 255, 136, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-            border: 1px dashed #333;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .ms-chart-line {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 50%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 25" preserveAspectRatio="none"><path d="M0,25 L10,20 L20,22 L30,10 L40,15 L50,5 L60,12 L70,8 L80,2 L90,10 L100,0" fill="none" stroke="%2300ff88" stroke-width="2"/></svg>');
-            background-size: cover;
-        }
-
-        .ms-card {
-            background: #1e1e1e;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 12px;
-        }
-
-        .ms-card h4 {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .ms-card .value {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #fff;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .ms-tag {
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-        }
-
-        .tag-long {
-            background: rgba(0, 255, 136, 0.2);
-            color: var(--primary-color);
-        }
-
-        .tag-short {
-            background: rgba(255, 59, 48, 0.2);
-            color: var(--secondary-color);
-        }
-
-        /* --- HOW IT WORKS --- */
-        .steps {
-            padding: 120px 0;
-            background: var(--surface-color);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 80px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 16px;
-        }
-
-        .steps-grid {
+        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            gap: 30px;
+            margin-top: 50px;
         }
 
-        .step-card {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 40px;
-            border-radius: 16px;
-            position: relative;
-            transition: 0.3s;
+        .feature-card {
+            background-color: var(--bg-color);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.2s ease;
         }
 
-        .step-card:hover {
-            border-color: var(--primary-color);
+        .feature-card:hover {
             transform: translateY(-5px);
         }
 
-        .step-number {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--primary-color);
-            font-size: 3rem;
-            font-weight: 700;
-            opacity: 0.3;
+        .feature-icon {
+            font-size: 2.5rem;
             margin-bottom: 20px;
         }
 
-        .step-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .step-card p {
-            color: var(--text-muted);
-        }
-
-        /* --- DOWNLOAD CTA --- */
-        .cta-section {
-            padding: 120px 0;
+        /* Exchanges */
+        .exchanges {
+            padding: 80px 0;
             text-align: center;
         }
 
-        .cta-box {
-            background: linear-gradient(180deg, #121212 0%, #050505 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 80px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
-        }
-
-        .cta-box h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .store-badge {
-            display: inline-flex;
-            align-items: center;
-            background: white;
-            color: black;
-            padding: 10px 20px;
-            border-radius: 8px;
-            margin: 10px;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .store-badge:hover {
-            transform: scale(1.05);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            border-top: 1px solid var(--border-color);
-            padding: 60px 0 30px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        .footer-grid {
+        .exchange-list {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
         }
 
-        .social-links a {
-            margin-left: 20px;
-            font-size: 1.2rem;
-            transition: 0.3s;
+        .exchange-tag {
+            background: var(--surface-color);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
-        .social-links a:hover {
-            color: var(--primary-color);
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
         }
 
-        /* --- RESPONSIVE --- */
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.8rem;
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 60px 0;
             }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: center;
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-image {
+                order: 2;
+                margin-top: 40px;
+            }
+
+            .button-group {
+                justify-content: center;
             }
 
             .btn {
                 width: 100%;
-                max-width: 300px;
-            }
-
-            .footer-grid {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .social-links a {
-                margin: 0 10px;
             }
         }
     </style>
@@ -438,229 +269,81 @@
 
     <header>
         <div class="container">
-            <nav>
-                <div class="logo">
-                    SNAP<span>TRADE</span></div>
-                <a href="https://apps.apple.com/us/app/snap-trade-scan-track/id6754677971"
-                    class="btn btn-outline"
-                    style="padding: 8px 20px; font-size: 0.9rem;">
-                    Download App
-                </a>
+            <nav aria-label="Main Navigation">
+                <a href="/" class="logo" aria-label="Snap Trade Home">Snap Trade</a>
+                <a href="https://tomylink.co/dl/snaptrade" class="btn btn-nav" role="button">Download App</a>
             </nav>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Turn Screenshots into<br><span
-                    class="text-primary">Winning
-                    Trades.</span></h1>
-            <p>Upload a crypto chart. Our AI
-                analyzes the trend and generates 3
-                actionable trade options
-                instantly: Entry, Exit, and Stop
-                Loss.</p>
+    <main>
+        <section class="hero" id="home">
+            <div class="container" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap;">
+                <article class="hero-content">
+                    <h1>The Smartest <span class="highlight">Crypto Trading Journal</span></h1>
+                    <p>Stop typing trades manually. Upload screenshots from Binance, Bybit, or Coinbase and let our AI
+                        extract your Long/Short positions, PnL, and entry/exit prices instantly.</p>
 
-            <div class="hero-buttons">
-                <a href="https://apps.apple.com/us/app/snap-trade-scan-track/id6754677971"
-                    class="btn btn-primary">
-                    <i
-                        class="fa-brands fa-apple"></i>
-                    Download for iOS
-                </a>
-                <a href="#"
-                    class="btn btn-outline">
-                    <i
-                        class="fa-brands fa-google-play"></i>
-                    Download for Android
-                </a>
-            </div>
-
-            <div class="app-preview">
-                <div class="mockup-container">
-                    <div class="mockup-screen">
-                        <div class="ms-header">
-                            <span><i
-                                    class="fa-solid fa-bars"></i></span>
-                            <span>BTC/USDT</span>
-                            <span><i
-                                    class="fa-solid fa-user"></i></span>
-                        </div>
-
-                        <div
-                            class="ms-chart-placeholder">
-                            <div
-                                class="ms-chart-line">
-                            </div>
-                            <span
-                                style="font-size: 0.8rem; background: #000; padding: 5px 10px; border-radius: 20px;">Analyzing
-                                Chart...</span>
-                        </div>
-
-                        <div class="ms-card"
-                            style="border-left: 4px solid var(--primary-color);">
-                            <h4>Option 1:
-                                Aggressive Long
-                            </h4>
-                            <div class="value">
-                                <span>$96,400</span>
-                                <span
-                                    class="ms-tag tag-long">LONG</span>
-                            </div>
-                            <div
-                                style="font-size: 0.8rem; color: #666; margin-top: 5px;">
-                                Stop Loss: <span
-                                    style="color: var(--secondary-color)">$95,800</span>
-                            </div>
-                        </div>
-
-                        <div class="ms-card"
-                            style="border-left: 4px solid #fff;">
-                            <h4>Option 2:
-                                Conservative Entry
-                            </h4>
-                            <div class="value">
-                                <span>$94,200</span>
-                                <span
-                                    class="ms-tag"
-                                    style="background:#333; color:#fff">WAIT</span>
-                            </div>
-                            <div
-                                style="font-size: 0.8rem; color: #666; margin-top: 5px;">
-                                Target: <span
-                                    style="color: var(--primary-color)">$98,000</span>
-                            </div>
-                        </div>
-
+                    <div class="button-group">
+                        <a href="https://tomylink.co/snaptradeios" class="btn" role="button">Download on App Store</a>
+                        <a href="https://tomylink.co/snaptradeandroid" class="btn btn-secondary" role="button">Download
+                            on Play Store</a>
                     </div>
+                </article>
+                <aside class="hero-image">
+                    <img src="snap-trade.png"
+                        alt="Snap Trade app interface showing automated extraction of a Binance short position screenshot">
+                </aside>
+            </div>
+        </section>
+
+        <section class="features" id="how-it-works">
+            <div class="container">
+                <h2>How Snap Trade Works</h2>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto;">Automate your record-keeping in three
+                    simple steps.</p>
+
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">📸</div>
+                        <h3>1. Snap & Upload</h3>
+                        <p>Take a screenshot of your closed trade or active position directly from your exchange app.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">🧠</div>
+                        <h3>2. AI Extraction</h3>
+                        <p>Our fast OCR engine reads the image to detect leverage, margins, entry price, and net ROI.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <div class="feature-icon" aria-hidden="true">📈</div>
+                        <h3>3. Track Performance</h3>
+                        <p>View your win-rate, profit/loss ratio, and trade history in a clean, organized dashboard.</p>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="steps">
-        <div class="container">
-            <div class="section-header">
-                <h2>How It Works</h2>
-                <p class="text-muted">From
-                    screenshot to strategy in
-                    three simple steps.</p>
-            </div>
-
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-number">01
-                    </div>
-                    <h3>Snap or Upload</h3>
-                    <p>Take a screenshot of any
-                        crypto chart (Binance,
-                        TradingView, etc.) or
-                        upload an existing photo
-                        from your gallery.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">02
-                    </div>
-                    <h3>AI Analysis</h3>
-                    <p>Our advanced image
-                        recognition AI scans the
-                        candles,
-                        support/resistance lines,
-                        and indicators within
-                        seconds.</p>
-                </div>
-
-                <div class="step-card">
-                    <div class="step-number">03
-                    </div>
-                    <h3>Get 3 Options</h3>
-                    <p>Receive three distinct
-                        trading plans: Aggressive,
-                        Conservative, and
-                        Balanced. Each includes
-                        Entry, Targets, and Stop
-                        Loss.</p>
+        <section class="exchanges" id="exchanges">
+            <div class="container">
+                <h2>Supported Exchanges</h2>
+                <p>Designed to read the exact UI layouts of the world's top crypto platforms.</p>
+                <div class="exchange-list">
+                    <span class="exchange-tag">Binance</span>
+                    <span class="exchange-tag">Bybit</span>
+                    <span class="exchange-tag">Coinbase</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-box">
-                <h2>Stop Guessing.<br>Start <span
-                        class="text-primary">Trading.</span>
-                </h2>
-                <p
-                    style="color: var(--text-muted); margin-bottom: 40px; font-size: 1.1rem;">
-                    Join thousands of traders
-                    using Snap Trade to validate
-                    their setups and manage risk.
-                </p>
-                <div>
-                    <a href="https://apps.apple.com/us/app/snap-trade-scan-track/id6754677971"
-                        class="store-badge">
-                        <i class="fa-brands fa-apple"
-                            style="font-size: 1.5rem; margin-right: 10px;"></i>
-                        <div
-                            style="text-align: left; line-height: 1.2;">
-                            <span
-                                style="font-size: 0.7rem; display: block;">Download
-                                on the</span>
-                            <span
-                                style="font-size: 1.1rem;">App
-                                Store</span>
-                        </div>
-                    </a>
-                    <a href="#"
-                        class="store-badge">
-                        <i class="fa-brands fa-google-play"
-                            style="font-size: 1.5rem; margin-right: 10px;"></i>
-                        <div
-                            style="text-align: left; line-height: 1.2;">
-                            <span
-                                style="font-size: 0.7rem; display: block;">GET
-                                IT ON</span>
-                            <span
-                                style="font-size: 1.1rem;">Google
-                                Play</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <div class="footer-grid">
-                <div class="logo"
-                    style="font-size: 1.2rem;">
-                    SNAP<span>TRADE</span></div>
-                <div class="footer-links">
-                    <a href="https://sites.google.com/view/snaptrade/home"
-                        target="_blank">Privacy
-                        Policy</a>
-                    <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/"
-                        target="_blank">Terms of
-                        Use</a>
-                </div>
-                <div class="social-links">
-                    <a href="#"><i
-                            class="fa-brands fa-twitter"></i></a>
-                    <a href="#"><i
-                            class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i
-                            class="fa-brands fa-discord"></i></a>
-                </div>
-            </div>
-            <div
-                style="text-align: center; font-size: 0.8rem; opacity: 0.5;">
-                &copy; 2025 Snap Trade. All rights
-                reserved. Trading crypto involves
-                risk.
-            </div>
+            <p>&copy; 2026 Snap Trade App. All rights reserved.</p>
+            <p style="font-size: 0.85rem; margin-top: 10px;">Not affiliated with Binance, Bybit, or Coinbase.</p>
         </div>
     </footer>
 
