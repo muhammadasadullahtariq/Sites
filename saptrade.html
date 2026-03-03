@@ -264,67 +264,7 @@
         }
     </style>
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5RKVJYLD2"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
 
-        gtag('config', 'G-K5RKVJYLD2');
-    </script>
-
-    <!-- Google tag (gtag.js) event -->
-    <script>
-        gtag('event', 'app_store_subscription_convert', {
-            // <event_parameters>
-        });
-    </script>
-
-    <!-- Google tag (gtag.js) event -->
-    <script>
-        gtag('event', 'app_store_subscription_renew', {
-            // <event_parameters>
-        });
-    </script>
-
-    <!-- Google tag (gtag.js) event -->
-    <script>
-        gtag('event', 'in_app_purchase', {
-            // <event_parameters>
-        });
-    </script>
-
-    <!-- Google tag (gtag.js) event -->
-    <script>
-        gtag('event', 'ads_conversion_Subscribe_1', {
-            // <event_parameters>
-        });
-    </script>
-
-    <!-- Event snippet for page vie ios conversion page -->
-    <script>
-        gtag('event', 'conversion', { 'send_to': 'AW-11155916982/ZghKCNDz88gaELaRx8cp' });
-    </script>
-
-    <!-- Google tag (gtag.js) event - delayed navigation helper -->
-    <script>
-        // Helper function to delay opening a URL until a gtag event is sent.
-        // Call it in response to an action that should navigate to a URL.
-        function gtagSendEvent(url) {
-            var callback = function () {
-                if (typeof url === 'string') {
-                    window.location = url;
-                }
-            };
-            gtag('event', 'conversion_event_subscribe_paid', {
-                'event_callback': callback,
-                'event_timeout': 2000,
-                // <event_parameters>
-            });
-            return false;
-        }
-    </script>
 </head>
 
 <body>
