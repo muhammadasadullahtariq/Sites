@@ -11,6 +11,30 @@
 
         gtag('config', 'G-K5RKVJYLD2');
     </script>
+    <!-- Google tag (gtag.js) event - delayed navigation helper -->
+    <script>
+        // Helper function to delay opening a URL until a gtag event is sent.
+        // Call it in response to an action that should navigate to a URL.
+        function gtagSendEvent(url) {
+            var callback = function () {
+                if (typeof url === 'string') {
+                    window.location = url;
+                }
+            };
+
+            gtag('event', 'app_store_subscription_renew', {});
+            gtag('event', 'conversion', { 'send_to': 'AW-11155916982/ZghKCNDz88gaELaRx8cp' });
+            gtag('event', 'in_app_purchase', {});
+            gtag('event', 'ads_conversion_Subscribe_1', {});
+            gtag('event', 'conversion_event_subscribe_paid', {});
+
+            gtag('event', 'app_store_subscription_convert', {
+                'event_callback': callback,
+                'event_timeout': 2000
+            });
+            return false;
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,10 +43,10 @@
         content="Master the markets with Snap Forex. Get AI-powered forex signals, instant chart analysis, and scalp trading strategies. Download for iOS and Android.">
     <meta name="keywords"
         content="forex signals, AI trading, chart analysis, forex app, trading assistant, scalping strategy, market breakouts">
-    <link rel="canonical" href="https://yourdomain.com/" />
+    <link rel="canonical" href="https://snap-forex.linkapp.one/" />
 
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:url" content="https://snap-forex.linkapp.one/">
     <meta property="og:title" content="Snap Forex | AI-Powered Trading Assistant">
     <meta property="og:description"
         content="Upload any chart and let AI find the trend. Catch fast price jumps instantly.">
@@ -259,7 +283,8 @@
     <header>
         <nav class="animate__animated animate__fadeInDown">
             <div class="logo">SNAP FOREX</div>
-            <a href="https://tomylink.co/dl/snapforex" class="get-app-btn">Get App</a>
+            <a href="https://tomylink.co/dl/snapforex" class="get-app-btn"
+                onclick="return gtagSendEvent('https://tomylink.co/dl/snapforex');">Get App</a>
         </nav>
     </header>
 
@@ -273,11 +298,13 @@
                 </p>
 
                 <div class="download-btns animate__animated animate__fadeInUp">
-                    <a href="https://tomylink.co/snapforexios" class="store-btn">
+                    <a href="https://tomylink.co/snapforexios" class="store-btn"
+                        onclick="return gtagSendEvent('https://tomylink.co/snapforexios');">
                         <i class="fab fa-apple fa-2x"></i>
                         <span>App Store</span>
                     </a>
-                    <a href="https://tomylink.co/snapforexandroid" class="store-btn android">
+                    <a href="https://tomylink.co/snapforexandroid" class="store-btn android"
+                        onclick="return gtagSendEvent('https://tomylink.co/snapforexandroid');">
                         <i class="fab fa-google-play fa-2x"></i>
                         <span>Google Play</span>
                     </a>
