@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Snap Forex | AI Trading Signals & Forex Chart Analysis App</title>
+    <meta name="description"
+        content="Master the markets with Snap Forex. Get AI-powered forex signals, instant chart analysis, and scalp trading strategies. Download for iOS and Android.">
+    <meta name="keywords"
+        content="forex signals, AI trading, chart analysis, forex app, trading assistant, scalping strategy, market breakouts">
+    <link rel="canonical" href="https://yourdomain.com/" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourdomain.com/">
+    <meta property="og:title" content="Snap Forex | AI-Powered Trading Assistant">
+    <meta property="og:description"
+        content="Upload any chart and let AI find the trend. Catch fast price jumps instantly.">
+    <meta property="og:image" content="snap-forex.png">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Snap Forex | AI Trading Signals">
+    <meta property="twitter:description" content="AI-powered forex chart analysis in the palm of your hand.">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Snap Forex",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "FinanceApplication",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "1250"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0.00",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
+    <style>
+        :root {
+            --primary-blue: #0082ff;
+            --primary-green: #00ff88;
+            --bg-dark: #0a0e17;
+            --card-bg: #161b26;
+            --text-light: #f4f7fa;
+            --glow: rgba(0, 255, 136, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(10, 14, 23, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .get-app-btn {
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px var(--glow);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 120px 8% 80px 8%;
+            background: radial-gradient(circle at top right, rgba(0, 130, 255, 0.1), transparent);
+        }
+
+        .hero-text-content {
+            flex: 1;
+            text-align: left;
+            padding-right: 50px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--primary-green);
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 550px;
+            margin-bottom: 40px;
+            color: #a0aec0;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        .snap-forex-mockup {
+            /* STATS WIDTH CONSTRAINTS */
+            width: 100%;
+            max-width: 250px;
+            /* Crucial: Keeps the phone from being huge on wide screens */
+            height: auto;
+
+            /* Aesthetic additions for a 'floating' effect */
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+            border-radius: 40px;
+            /* Optional: if the image doesn't already have curved edges */
+            animation: floating 3s ease-in-out infinite;
+            /* Custom floating animation */
+        }
+
+        @keyframes floating {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .download-btns {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            background: #fff;
+            color: #000;
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .store-btn.android {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* --- Features --- */
+        .features {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text-content {
+                padding-right: 0;
+                margin-top: 40px;
+            }
+
+            .download-btns {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="animate__animated animate__fadeInDown">
+            <div class="logo">SNAP FOREX</div>
+            <a href="https://tomylink.co/dl/snapforex" class="get-app-btn">Get App</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-text-content">
+                <h1 class="animate__animated animate__zoomIn">Catch Fast Price Jumps <span>Instantly with AI</span></h1>
+                <p class="animate__animated animate__fadeInUp">
+                    The #1 AI Trading Assistant for Forex. Upload a chart, get instant signals, and master market
+                    breakouts with Snap Forex.
+                </p>
+
+                <div class="download-btns animate__animated animate__fadeInUp">
+                    <a href="https://tomylink.co/snapforexios" class="store-btn">
+                        <i class="fab fa-apple fa-2x"></i>
+                        <span>App Store</span>
+                    </a>
+                    <a href="https://tomylink.co/snapforexandroid" class="store-btn android">
+                        <i class="fab fa-google-play fa-2x"></i>
+                        <span>Google Play</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-image-container animate__animated animate__fadeInRight">
+                <img src="snap-forex.png" alt="Snap Forex AI Trading App Interface on Mobile" class="snap-forex-mockup">
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Best AI Forex Signals App</h2>
+            <div style="width: 80px; height: 4px; background: var(--primary-green); margin: 20px auto;"></div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <h3>AI Chart Scanner</h3>
+                    <p>Advanced AI-powered chart analysis for instant pattern recognition.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                    <h3>Bullish Trends</h3>
+                    <p>Real-time notifications for short-term surges and long-term breakouts.</p>
+                </article>
+                <article class="feature-card">
+                    <i class="fas fa-microchip" aria-hidden="true"></i>
+                    <h3>Scalping Strategy</h3>
+                    <p>Master 1m and 5m timeframes with high-precision scalping tools.</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 50px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);">
+        <p style="color: #718096;">&copy; 2026 Snap Forex AI. All rights reserved. <br> Trading involves risk. Trade
+            responsibly.</p>
+    </footer>
+
+</body>
+
+</html>
