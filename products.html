@@ -1070,12 +1070,17 @@
                 stLoad.style.display = 'none';
                 if (counter) counter.textContent = '(' + docs.length + ')';
 
-                // sort by priority field (0 first, then 1, 2, … — missing priority goes last)
-                docs.sort((a, b) => {
-                    const pa = parseInt((a.fields?.priority?.integerValue ?? a.fields?.priority?.stringValue) ?? 9999);
-                    const pb = parseInt((b.fields?.priority?.integerValue ?? b.fields?.priority?.stringValue) ?? 9999);
-                    return pa - pb;
-                });
+                // sort by priority (0 = highest → shown first; missing priority goes last)
+                function getPriority(doc) {
+                    const p = doc.fields?.priority;
+                    if (!p) return 9999;
+                    // Firestore REST API may return integerValue as number OR string
+                    const raw = p.integerValue ?? p.doubleValue ?? p.stringValue;
+                    if (raw === undefined || raw === null) return 9999;
+                    const n = Number(raw);
+                    return isNaN(n) ? 9999 : n;
+                }
+                docs.sort((a, b) => getPriority(b) - getPriority(a));
 
                 docs.forEach((doc, i) => {
                     const row = makeRow(doc, i);
