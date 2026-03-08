@@ -784,18 +784,60 @@
                 display: none
             }
 
+            /* ── Hero: shrink height so text is always visible ── */
+            .hero {
+                height: auto;
+                min-height: 0;
+                padding: 100px 6% 60px;
+                justify-content: flex-start;
+            }
+
+            .hero-scroll {
+                display: none
+            }
+
             #contact {
                 grid-template-columns: 1fr;
                 gap: 40px
             }
 
+            /* ── Product rows: full-width single column ── */
             .p-row {
-                grid-template-columns: 60px 1fr auto;
-                gap: 16px
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 24px 0;
+            }
+
+            /* hide index number and right-arrow on mobile */
+            .p-num {
+                display: none
+            }
+
+            .p-arrow {
+                display: none
+            }
+
+            /* p-mid becomes a column: text on top, image below */
+            .p-mid {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 14px;
+            }
+
+            /* image moves below text, full-width */
+            .p-icon {
+                order: 2;
+                width: 100%;
+                height: 160px;
+                border-radius: 12px;
+            }
+
+            .p-text-group {
+                order: 1;
             }
 
             .p-num {
-                font-size: .9rem
+                font-size: .85rem
             }
 
             footer {
@@ -813,16 +855,6 @@
         }
 
         @media(max-width:500px) {
-            .p-mid {
-                gap: 14px
-            }
-
-            .p-icon {
-                width: 44px;
-                height: 44px;
-                border-radius: 10px
-            }
-
             .p-desc {
                 display: none
             }
