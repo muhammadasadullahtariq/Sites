@@ -168,6 +168,13 @@
             padding-right: 50px;
         }
 
+        .hero-image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 20px;
@@ -274,19 +281,95 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* --- QR Code Section --- */
+        .qr-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 30px;
+            padding: 20px 24px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            width: fit-content;
+        }
+
+        .qr-section img {
+            width: 90px;
+            height: 90px;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .qr-label {
+            font-size: 0.85rem;
+            color: #a0aec0;
+            margin-top: 8px;
+            margin-bottom: 0px;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Mobile download button */
+        .mobile-download-btn {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            margin-top: 30px;
+            text-decoration: none;
+            background: linear-gradient(45deg, var(--primary-blue), var(--primary-green));
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            box-shadow: 0 4px 20px var(--glow);
+            transition: 0.3s;
+        }
+
+        .mobile-download-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 768px) {
             .hero {
-                flex-direction: column-reverse;
+                flex-direction: column;
                 text-align: center;
+                padding: 100px 5% 60px;
+                gap: 40px;
             }
 
             .hero-text-content {
                 padding-right: 0;
-                margin-top: 40px;
+                order: 2;
             }
 
-            .download-btns {
+            .hero-image-container {
+                order: 1;
+            }
+
+            .snap-forex-mockup {
+                max-width: 180px;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .qr-section {
+                display: none !important;
+            }
+
+            .mobile-download-btn {
+                display: inline-flex;
+                width: 100%;
                 justify-content: center;
+                margin: 20px 0 0;
             }
         }
     </style>
@@ -311,18 +394,19 @@
                     breakouts with Snap Forex.
                 </p>
 
-                <div class="download-btns animate__animated animate__fadeInUp">
-                    <a href="https://tomylink.co/snapforexios" class="store-btn"
-                        onclick="return gtagSendEvent('https://tomylink.co/snapforexios');">
-                        <i class="fab fa-apple fa-2x"></i>
-                        <span>App Store</span>
-                    </a>
-                    <a href="https://tomylink.co/snapforexandroid" class="store-btn android"
-                        onclick="return gtagSendEvent('https://tomylink.co/snapforexandroid');">
-                        <i class="fab fa-google-play fa-2x"></i>
-                        <span>Google Play</span>
-                    </a>
+
+
+                <!-- QR Code (desktop) -->
+                <div class="qr-section animate__animated animate__fadeInUp" id="snapforex-qr">
+                    <img src="dl_snapforex.png" alt="QR code to download Snap Forex">
+                    <p class="qr-label">Scan to Download<br>Mobile App</p>
                 </div>
+
+                <!-- Smart Download Button (mobile) -->
+                <a href="#" class="mobile-download-btn" id="snapforex-mobile-btn">
+                    <i class="fab fa-apple fa-lg" id="snapforex-store-icon"></i>
+                    <span id="snapforex-store-label">Download App</span>
+                </a>
             </div>
 
             <div class="hero-image-container animate__animated animate__fadeInRight">
@@ -359,6 +443,25 @@
             responsibly.</p>
     </footer>
 
+    <script>
+        (function () {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isAndroid = /android/i.test(ua);
+            var isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+            var btn = document.getElementById('snapforex-mobile-btn');
+            var icon = document.getElementById('snapforex-store-icon');
+            var label = document.getElementById('snapforex-store-label');
+            if (isAndroid) {
+                btn.href = 'https://tomylink.co/snapforexandroid';
+                icon.className = 'fab fa-google-play fa-lg';
+                label.textContent = 'Download on Google Play';
+            } else {
+                btn.href = 'https://tomylink.co/snapforexios';
+                icon.className = 'fab fa-apple fa-lg';
+                label.textContent = 'Download on App Store';
+            }
+        })();
+    </script>
 </body>
 
 </html>

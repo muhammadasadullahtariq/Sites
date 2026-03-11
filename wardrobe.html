@@ -124,7 +124,7 @@
 
         /* Hero Section */
         .hero {
-            padding: 60px 0 80px;
+            padding: 60px 0 30px;
             text-align: center;
         }
 
@@ -141,7 +141,7 @@
         .hero p {
             font-size: 1.2rem;
             color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 45px;
+            margin-bottom: 20px;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
@@ -334,6 +334,60 @@
             font-size: 0.9rem;
         }
 
+        /* QR Section */
+        .qr-section {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 10px;
+            padding: 18px 24px;
+            background: var(--glass);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .qr-section img {
+            width: 88px;
+            height: 88px;
+            border-radius: 10px;
+            display: block;
+        }
+
+        .qr-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            margin-top: 8px;
+            margin-bottom: 0;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Mobile Download Button */
+        .mobile-download-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 20px;
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: 0.3s;
+            box-shadow: 0 4px 20px rgba(128, 34, 198, 0.4);
+        }
+
+        .mobile-download-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
         @media (max-width: 900px) {
             .bento-grid {
                 grid-template-columns: 1fr;
@@ -348,6 +402,33 @@
             .span-2 img {
                 width: 100%;
                 max-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .qr-section {
+                display: none !important;
+            }
+
+            .mobile-download-btn {
+                display: inline-flex;
+            }
+
+            .cta-container {
+                display: none !important;
+            }
+
+            .hero {
+                padding: 40px 0 60px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 8vw, 3.5rem);
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 30px;
             }
         }
     </style>
@@ -370,16 +451,18 @@
             look for any occasion, weather, or
             mood.</p>
 
-        <div class="cta-container">
-            <a href="https://apps.apple.com/app/id6756827735" class="apple-btn">
-                <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
-                    alt="App Store">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=one.qiy.wardrope" class="google-btn">
-                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
-                    alt="Play Store">
-            </a>
+
+
+        <!-- QR Code (desktop) -->
+        <div class="qr-section" id="wardrobe-qr">
+            <img src="dl_wardrobe.png" alt="QR code to download WARdrop">
+            <p class="qr-label">Scan to Download<br>Mobile App</p>
         </div>
+
+        <!-- Smart Download Button (mobile) -->
+        <a href="#" class="mobile-download-btn" id="wardrobe-mobile-btn">
+            <span id="wardrobe-store-label">Download App</span>
+        </a>
     </section>
 
     <div class="gallery-wrap">
@@ -482,6 +565,20 @@
         </div>
     </footer>
 
+    <script>
+        (function () {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var isAndroid = /android/i.test(ua);
+            var btn = document.getElementById('wardrobe-mobile-btn');
+            if (isAndroid) {
+                btn.href = 'https://play.google.com/store/apps/details?id=one.qiy.wardrope';
+                btn.innerHTML = '<i class="fab fa-google-play" style="margin-right:10px"></i> Download on Google Play';
+            } else {
+                btn.href = 'https://apps.apple.com/app/id6756827735';
+                btn.innerHTML = '<i class="fab fa-apple" style="margin-right:10px"></i> Download on App Store';
+            }
+        })();
+    </script>
 </body>
 
 </html>
