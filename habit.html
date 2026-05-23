@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ── Primary SEO ── -->
+    <title>Habit: Routine & Goal Planner — AI-Powered Daily Habit Tracker</title>
+    <meta name="description"
+        content="Build consistent routines, track monthly goals, and get AI-powered weekly audit reports. Optimize your productivity and build lasting streaks. Download free on iOS & Android.">
+    <meta name="keywords"
+        content="habit tracker, daily routine planner, goal tracker, AI coach, weekly audit, streak tracker, productivity app, life organizer, Habit 30">
+    <meta name="author" content="Link App">
+    <link rel="canonical" href="https://habit.linkapp.one/">
+
+    <!-- ── Favicon ── -->
+    <link rel="icon" type="image/png" href="https://www.linkapp.one/favicon.ico">
+
+    <!-- ── Open Graph ── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://habit.linkapp.one/">
+    <meta property="og:site_name" content="Habit: Routine & Goal Planner">
+    <meta property="og:title" content="Habit: Routine & Goal Planner | AI-Powered Habit Tracker">
+    <meta property="og:description"
+        content="Track daily habits, set monthly goals, and get personalized AI-powered weekly audit reports. Download now.">
+    <meta property="og:image" content="https://qiy.blob.core.windows.net/products/habit.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="500">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ── Twitter / X Card ── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@linkappone">
+    <meta name="twitter:creator" content="@linkappone">
+    <meta name="twitter:title" content="Habit: Routine & Goal Planner | AI-Powered Habit Tracker">
+    <meta name="twitter:description"
+        content="Track daily habits, set monthly goals, and get personalized AI-powered weekly audit reports.">
+    <meta name="twitter:image" content="https://qiy.blob.core.windows.net/products/habit.png">
+
+    <!-- ── JSON-LD ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Habit: Routine & Goal Planner",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "HealthApplication",
+      "description": "AI-powered productivity and habit-tracking application that analyzes weekly routines and offers goal recommendations.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://habit.linkapp.one/",
+      "downloadUrl": "https://tomylink.co/dl/habitTracker",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Link App",
+        "url": "https://www.linkapp.one"
+      }
+    }
+    </script>
+
+    <!-- Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #10b981; /* Growth Emerald Green */
+            --primary-glow: rgba(16, 185, 129, 0.15);
+            --secondary: #6366f1; /* Intelligent Indigo */
+            --secondary-glow: rgba(99, 102, 241, 0.1);
+            --accent: #06b6d4; /* Tech Cyan */
+            --dark: #090b11; /* Space Black */
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.07);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Ambient Glow Background Blobs */
+        .bg-glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-glow-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+            filter: blur(80px);
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            filter: blur(80px);
+        }
+
+        .bg-glow-3 {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(6, 180, 212, 0.06) 0%, transparent 60%);
+            filter: blur(60px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 1.6rem;
+            filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 0 100px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 60%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 36px;
+            max-width: 580px;
+        }
+
+        /* Download QR Container */
+        .download-area {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .qr-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 16px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .qr-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            border: 4px solid var(--primary);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .qr-info h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .qr-info p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0;
+            line-height: 1.3;
+        }
+
+        /* Mobile Action Button */
+        .mobile-cta-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary) 0%, #059669 100%);
+            color: #fff;
+            padding: 18px 36px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+            width: 100%;
+        }
+
+        .mobile-cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Interactive Phone Mockup styling */
+        .hero-mockup-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Floating elements in Hero */
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+            animation: float-slow 6s infinite ease-in-out;
+            z-index: 10;
+        }
+
+        .fe-streak {
+            top: 15%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .fe-coach {
+            bottom: 12%;
+            right: -10%;
+            animation-delay: 2s;
+            max-width: 200px;
+            font-size: 0.85rem;
+            line-height: 1.3;
+        }
+
+        .fe-streak i {
+            color: #ff9f43;
+            font-size: 1.4rem;
+        }
+
+        .fe-coach i {
+            color: var(--accent);
+            font-size: 1.3rem;
+        }
+
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        /* Phone Frame */
+        .phone-container {
+            width: 310px;
+            height: 620px;
+            background: #000;
+            border-radius: 44px;
+            border: 12px solid #1a1e27;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            user-select: none;
+        }
+
+        /* Phone Island / Notch */
+        .phone-island {
+            width: 110px;
+            height: 25px;
+            background: #000;
+            border-radius: 20px;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+        }
+
+        /* Phone Screen Content */
+        .phone-screen {
+            flex: 1;
+            background: #0e1118;
+            padding: 40px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+
+        .phone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .phone-header-title h4 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .phone-header-title p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .phone-streak-badge {
+            background: rgba(255, 159, 67, 0.12);
+            border: 1px solid rgba(255, 159, 67, 0.2);
+            color: #ff9f43;
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Progress Card with SVG circular ring */
+        .phone-progress-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .progress-card-info h5 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .progress-card-info p {
+            font-size: 0.73rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-ring-container {
+            position: relative;
+            width: 60px;
+            height: 60px;
+        }
+
+        .progress-ring-circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.05);
+            stroke-width: 6;
+        }
+
+        .progress-ring-circle {
+            fill: none;
+            stroke: var(--primary);
+            stroke-width: 6;
+            stroke-linecap: round;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.35s ease;
+        }
+
+        .progress-percent-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.8rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* Habits List */
+        .phone-habits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .phone-habits-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        /* Interactive Habit Card */
+        .phone-habit-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .phone-habit-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(255, 255, 255, 0.08);
+            transform: scale(1.02);
+        }
+
+        .phone-habit-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phone-habit-icon-wrap {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+
+        .phone-habit-details h6 {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .phone-habit-details p {
+            font-size: 0.68rem;
+            color: var(--text-muted);
+        }
+
+        /* Custom Checkbox Design */
+        .phone-habit-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            color: transparent;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Checked State Styles */
+        .phone-habit-card.checked {
+            background: rgba(16, 185, 129, 0.06);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .phone-habit-card.checked .phone-habit-icon-wrap {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--primary);
+        }
+
+        .phone-habit-card.checked .phone-habit-details h6 {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+            opacity: 0.75;
+        }
+
+        .phone-habit-card.checked .phone-habit-check {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: #000;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Audit Box at bottom of screen */
+        .phone-audit-box {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(99, 102, 241, 0.05) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.15);
+            border-radius: 16px;
+            padding: 12px 14px;
+            margin-top: auto;
+        }
+
+        .phone-audit-header {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+
+        .phone-audit-header i {
+            font-size: 0.85rem;
+        }
+
+        .phone-audit-box p {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            line-height: 1.35;
+        }
+
+        /* Bento Grid Section */
+        .features {
+            padding: 100px 0;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title-wrap h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(to bottom, #fff, #9ca3af);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title-wrap p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .bento-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 32px;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.02), transparent);
+            pointer-events: none;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(16, 185, 129, 0.25);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.05);
+        }
+
+        .span-2 {
+            grid-column: span 2;
+        }
+
+        .bento-card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card:hover .bento-card-icon {
+            background: var(--primary-glow);
+            color: var(--primary);
+            border-color: rgba(16, 185, 129, 0.3);
+            transform: scale(1.05);
+        }
+
+        .bento-card.ai-card:hover .bento-card-icon {
+            color: var(--accent);
+            background: rgba(6, 182, 212, 0.15);
+            border-color: rgba(6, 182, 212, 0.3);
+        }
+
+        .bento-card h3 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .bento-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Styled list for Bento Card features */
+        .bento-features-list {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bento-features-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .bento-features-list li i {
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        /* Interactive AI Chat Section */
+        .ai-chat-section {
+            padding: 80px 0;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .chat-box-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .chat-box-info h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .chat-box-info p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        /* Interactive Chat Sandbox Styling */
+        .chat-container {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .chat-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: var(--accent);
+        }
+
+        .chat-header-info h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .chat-header-info p {
+            font-size: 0.75rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            scroll-behavior: smooth;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 14px 18px;
+            border-radius: 20px;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            animation: popIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+        }
+
+        @keyframes popIn {
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .cm-coach {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .cm-user {
+            background: var(--primary-glow);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Typing indicator */
+        .typing-indicator {
+            align-self: flex-start;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--card-border);
+            padding: 14px 20px;
+            border-radius: 20px;
+            border-bottom-left-radius: 4px;
+            display: none;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--text-secondary);
+            border-radius: 50%;
+            animation: pulse-dot 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes pulse-dot {
+            0%, 100% { transform: translateY(0); opacity: 0.4; }
+            50% { transform: translateY(-5px); opacity: 1; }
+        }
+
+        /* Chat suggestions options */
+        .chat-suggestions {
+            padding: 16px 24px 24px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .chat-suggestions-title {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .suggestions-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .suggestion-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            color: var(--text-secondary);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .suggestion-btn:hover {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: rgba(6, 182, 212, 0.3);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        /* Premium Call to Action (CTA) */
+        .final-cta {
+            padding: 120px 0;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(99, 102, 241, 0.04) 100%);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 48px;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .cta-card h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.2rem, 6vw, 3.6rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .cta-card p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Store Download Badges Container */
+        .store-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .store-badge img {
+            height: 48px;
+            width: auto;
+            transition: transform 0.25s ease;
+        }
+
+        .store-badge:hover img {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        /* Floating background icons */
+        .floating-icon {
+            position: absolute;
+            color: var(--primary);
+            opacity: 0.12;
+            animation: float-slow-icon 10s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        @keyframes float-slow-icon {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            50% { transform: translateY(-30px) rotate(15deg) scale(1.1); }
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-links {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .span-2 {
+                grid-column: span 1;
+            }
+
+            .chat-box-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .chat-box-info {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+                padding-bottom: 60px;
+            }
+
+            .hero-tagline {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero h1 {
+                font-size: clamp(2.2rem, 8vw, 3rem);
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .download-area {
+                display: none;
+            }
+
+            .mobile-cta-btn {
+                display: inline-flex;
+            }
+
+            .store-badges {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .cta-card {
+                padding: 60px 24px;
+                border-radius: 32px;
+            }
+
+            .floating-element {
+                display: none !important; /* Hide floating UI mockups on mobile for clean screen spacing */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Ambient background glows -->
+    <div class="bg-glow-container" aria-hidden="true">
+        <div class="bg-glow-1"></div>
+        <div class="bg-glow-2"></div>
+        <div class="bg-glow-3"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="container">
+        <a href="#" class="logo">
+            <i class="fa-solid fa-square-check"></i>
+            Habit<span>Planner</span>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="hero-content">
+            <div class="hero-tagline">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> AI-Powered Accountability
+            </div>
+            <h1>Your Daily Routine,<br>Supercharged by AI</h1>
+            <p>Go beyond static checklists. Track habits, set monthly milestones, and receive AI-driven weekly audits to build streaks that actually stick.</p>
+            
+            <!-- Desktop Download QR -->
+            <div class="download-area">
+                <div class="qr-card">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=0e1118&bgcolor=10b981&data=https://tomylink.co/dl/habitTracker" alt="QR Code to download Habit Tracker">
+                    <div class="qr-info">
+                        <h3>Scan to Download</h3>
+                        <p>Available on the iOS App Store<br>and Google Play Store.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile CTA Link -->
+            <a href="https://tomylink.co/dl/habitTracker" class="mobile-cta-btn" id="mobile-hero-btn">
+                <i class="fa-solid fa-download"></i> Get Habit Planner
+            </a>
+        </div>
+
+        <div class="hero-mockup-wrapper">
+            <!-- Floating Streak element -->
+            <div class="floating-element fe-streak">
+                <i class="fa-solid fa-fire"></i>
+                <div>
+                    <div style="font-weight:800; font-size:1rem; line-height:1.2;">5 Days</div>
+                    <div style="font-size:0.75rem; color:var(--text-secondary);">Current Streak</div>
+                </div>
+            </div>
+
+            <!-- Floating AI Coach Advice element -->
+            <div class="floating-element fe-coach">
+                <i class="fa-solid fa-brain"></i>
+                <div>
+                    <strong>AI Tip:</strong> Gym sessions are 30% more consistent on mornings!
+                </div>
+            </div>
+
+            <!-- CSS Phone Mockup -->
+            <div class="phone-container">
+                <div class="phone-island"></div>
+                <div class="phone-screen">
+                    <div class="phone-header">
+                        <div class="phone-header-title">
+                            <h4>Today</h4>
+                            <p id="phone-date-string">Sunday, May 24</p>
+                        </div>
+                        <div class="phone-streak-badge">
+                            <i class="fa-solid fa-fire"></i> <span id="phone-streak-count">5</span> Days
+                        </div>
+                    </div>
+
+                    <!-- Progress Summary Card -->
+                    <div class="phone-progress-card">
+                        <div class="progress-card-info">
+                            <h5 id="progress-text-title">Stay Consistent!</h5>
+                            <p><span id="checked-habits-num">2</span> of 4 completed</p>
+                        </div>
+                        <div class="progress-ring-container">
+                            <svg width="60" height="60">
+                                <circle class="progress-ring-circle-bg" cx="30" cy="30" r="26"></circle>
+                                <circle class="progress-ring-circle" id="progress-circle" cx="30" cy="30" r="26" stroke-dasharray="163.36" stroke-dashoffset="81.68"></circle>
+                            </svg>
+                            <span class="progress-percent-text" id="progress-percentage-text">50%</span>
+                        </div>
+                    </div>
+
+                    <!-- Habit List -->
+                    <div class="phone-habits-list">
+                        <div class="phone-habits-title">Habits</div>
+                        
+                        <!-- Habit 1 (Completed by default) -->
+                        <div class="phone-habit-card checked" onclick="toggleHabit(this, 1)">
+                            <div class="phone-habit-left">
+                                <div class="phone-habit-icon-wrap"><i class="fa-solid fa-brain"></i></div>
+                                <div class="phone-habit-details">
+                                    <h6>Morning Meditation</h6>
+                                    <p>10 mins • Daily</p>
+                                </div>
+                            </div>
+                            <div class="phone-habit-check"><i class="fa-solid fa-check"></i></div>
+                        </div>
+
+                        <!-- Habit 2 (Completed by default) -->
+                        <div class="phone-habit-card checked" onclick="toggleHabit(this, 2)">
+                            <div class="phone-habit-left">
+                                <div class="phone-habit-icon-wrap"><i class="fa-solid fa-glass-water"></i></div>
+                                <div class="phone-habit-details">
+                                    <h6>Drink 3L Water</h6>
+                                    <p>Goal: 3 Liters</p>
+                                </div>
+                            </div>
+                            <div class="phone-habit-check"><i class="fa-solid fa-check"></i></div>
+                        </div>
+
+                        <!-- Habit 3 (Uncompleted) -->
+                        <div class="phone-habit-card" onclick="toggleHabit(this, 3)">
+                            <div class="phone-habit-left">
+                                <div class="phone-habit-icon-wrap"><i class="fa-solid fa-book-open"></i></div>
+                                <div class="phone-habit-details">
+                                    <h6>Read 10 Pages</h6>
+                                    <p>Book: Atomic Habits</p>
+                                </div>
+                            </div>
+                            <div class="phone-habit-check"><i class="fa-solid fa-check"></i></div>
+                        </div>
+
+                        <!-- Habit 4 (Uncompleted) -->
+                        <div class="phone-habit-card" onclick="toggleHabit(this, 4)">
+                            <div class="phone-habit-left">
+                                <div class="phone-habit-icon-wrap"><i class="fa-solid fa-dumbbell"></i></div>
+                                <div class="phone-habit-details">
+                                    <h6>Evening Gym Workout</h6>
+                                    <p>60 mins • Mon/Wed/Fri</p>
+                                </div>
+                            </div>
+                            <div class="phone-habit-check"><i class="fa-solid fa-check"></i></div>
+                        </div>
+                    </div>
+
+                    <!-- AI Coach Audit Panel in phone screen -->
+                    <div class="phone-audit-box">
+                        <div class="phone-audit-header">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> AI Weekly Audit
+                        </div>
+                        <p id="phone-ai-summary">Keep going! Sticking to your morning habits is keeping your momentum up. Completing one more habit today will secure your 6-day streak record!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title-wrap">
+                <h2>Designed for Daily Progress</h2>
+                <p>No generic reminders. Our system acts as an intelligent accountability coach, keeping you focused on what truly drives results.</p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Bento Feature 1 (Smart Habit Tracker) -->
+                <div class="bento-card span-2">
+                    <div class="bento-card-icon"><i class="fa-solid fa-square-check"></i></div>
+                    <h3>Minimalist Routine Tracker</h3>
+                    <p>Log routines in seconds with a clean, focused checkmark interface. Track current streaks, historical consistency scores, and watch your daily metrics align with long-term aspirations without screen clutter.</p>
+                    <ul class="bento-features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Interactive widgets for quick streak logging</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Visual calendar representations of success frequencies</li>
+                    </ul>
+                </div>
+
+                <!-- Bento Feature 2 (AI Weekly Audit) -->
+                <div class="bento-card ai-card">
+                    <div class="bento-card-icon" style="color: var(--accent);"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3>AI Weekly Audits</h3>
+                    <p>Every weekend, our integrated AI audits your routine performance. It detects drop-off patterns, highlights peak focus hours, and advises actionable tweaks for the next week.</p>
+                </div>
+
+                <!-- Bento Feature 3 (Goal Logging) -->
+                <div class="bento-card ai-card">
+                    <div class="bento-card-icon" style="color: var(--accent);"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3>Detailed Goal Logs</h3>
+                    <p>Track metrics, qualitative comments, and custom goal notes. Track complex monthly objectives that simple yes/no checkmarks cannot accommodate.</p>
+                </div>
+
+                <!-- Bento Feature 4 (Reminders) -->
+                <div class="bento-card span-2">
+                    <div class="bento-card-icon"><i class="fa-solid fa-bell"></i></div>
+                    <h3>Streak-Saving Notifications</h3>
+                    <p>Smart notifications adapted to your personal circadian rhythm and behavior schedule. Get reminded precisely when you are most likely to follow through, preventing streak resets.</p>
+                    <ul class="bento-features-list">
+                        <li><i class="fa-solid fa-circle-check"></i> Adaptive alert timings based on habit completion history</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Motivational coach suggestions dynamically embedded inside alerts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive AI Coach Sandbox Section -->
+    <section class="ai-chat-section">
+        <div class="container chat-box-grid">
+            <div class="chat-box-info">
+                <h2>Consult Your Personal AI Coach</h2>
+                <p>Have questions about structuring your schedule, conquering early morning sluggishness, or building solid routines? Test out real AI coach responses right here.</p>
+                <div style="display: flex; gap: 15px; color: var(--accent); font-weight: 700; align-items: center;">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 1.4rem;"></i>
+                    <span style="font-size: 0.95rem;">100% Private, Offline-first Database Architecture</span>
+                </div>
+            </div>
+
+            <!-- Chat interface mockup -->
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-avatar">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="chat-header-info">
+                        <h4>Habit AI Coach</h4>
+                        <p><i class="fa-solid fa-circle" style="font-size: 0.5rem;"></i> Active & Ready</p>
+                    </div>
+                </div>
+
+                <!-- Message container -->
+                <div class="chat-body" id="chat-messages-container">
+                    <!-- Default message -->
+                    <div class="chat-message cm-coach">
+                        Hello! I am your Habit AI Coach. Click on one of the questions below or ask me how to structure your goals for customized, actionable tips.
+                    </div>
+
+                    <!-- Typing indicator (hidden by default) -->
+                    <div class="typing-indicator" id="chat-typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+
+                <!-- Suggested options -->
+                <div class="chat-suggestions">
+                    <span class="chat-suggestions-title">Ask AI Coach:</span>
+                    <div class="suggestions-list">
+                        <button class="suggestion-btn" onclick="sendPrompt(this, 1)">Beat Morning Procrastination ☕</button>
+                        <button class="suggestion-btn" onclick="sendPrompt(this, 2)">Sticking to Gym Routines 🏋️</button>
+                        <button class="suggestion-btn" onclick="sendPrompt(this, 3)">How to use Habit Stacking? 📚</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action -->
+    <section class="final-cta">
+        <!-- Background floating shapes for dynamic detail -->
+        <i class="fa-solid fa-fire floating-icon" style="top: 15%; left: 10%; font-size: 3.5rem;"></i>
+        <i class="fa-solid fa-brain floating-icon" style="bottom: 25%; right: 12%; font-size: 2.8rem; color: var(--accent);"></i>
+        <i class="fa-solid fa-square-check floating-icon" style="top: 40%; right: 8%; font-size: 2.2rem; color: var(--secondary);"></i>
+
+        <div class="container">
+            <div class="cta-card">
+                <h2>Take Control of Your Time</h2>
+                <p>Join thousands of users tracking habits, hitting monthly objectives, and receiving weekly audits to build consistent routines.</p>
+                
+                <div class="store-badges">
+                    <a href="https://apps.apple.com/us/app/habit-tracker-daily-goal-app/id6758458198" class="store-badge" target="_blank">
+                        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on the App Store">
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=one.qiy.habittracker" class="store-badge" target="_blank">
+                        <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" style="height: 70px; margin-left: -5px; margin-right: -5px;">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://sites.google.com/view/habit-30/home" target="_blank">Privacy Policy</a>
+                <a href="mailto:support@linkapp.one">Support</a>
+            </div>
+            <p>&copy; 2026 Habit Tracker App. Developed by Umar Mukhtar Khan / qiy dev. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // 1. Phone Mockup Toggle Habits Script
+        let checkedStates = {
+            1: true,
+            2: true,
+            3: false,
+            4: false
+        };
+
+        function toggleHabit(element, index) {
+            checkedStates[index] = !checkedStates[index];
+            
+            if (checkedStates[index]) {
+                element.classList.add('checked');
+            } else {
+                element.classList.remove('checked');
+            }
+            
+            updateProgress();
+        }
+
+        function updateProgress() {
+            let total = 4;
+            let checkedCount = Object.values(checkedStates).filter(state => state).length;
+            
+            // Update Text count
+            document.getElementById('checked-habits-num').innerText = checkedCount;
+            
+            // Calculate Percentage
+            let percentage = Math.round((checkedCount / total) * 100);
+            document.getElementById('progress-percentage-text').innerText = percentage + '%';
+            
+            // Calculate SVG Circular Offset (Radius 26, Perimeter = 2 * PI * 26 = 163.36)
+            let perimeter = 163.36;
+            let offset = perimeter - (percentage / 100) * perimeter;
+            document.getElementById('progress-circle').style.strokeDashoffset = offset;
+
+            // Dynamically change title and AI Coach Audit inside mockup screen
+            const titleEl = document.getElementById('progress-text-title');
+            const auditSummaryEl = document.getElementById('phone-ai-summary');
+            const streakCountEl = document.getElementById('phone-streak-count');
+
+            if (checkedCount === 0) {
+                titleEl.innerText = "Let's Get Started!";
+                auditSummaryEl.innerText = "Your routines are currently inactive today. Securing your 5-day streak only takes completing one habit!";
+                streakCountEl.innerText = "5";
+            } else if (checkedCount === 1) {
+                titleEl.innerText = "Nice Start!";
+                auditSummaryEl.innerText = "First habit ticked! Sticking to routines early sets up momentum. Complete another to unlock next level recommendations.";
+                streakCountEl.innerText = "5";
+            } else if (checkedCount === 2) {
+                titleEl.innerText = "Stay Consistent!";
+                auditSummaryEl.innerText = "Keep going! Sticking to your morning habits is keeping your momentum up. Completing one more habit today will secure your 6-day streak record!";
+                streakCountEl.innerText = "5";
+            } else if (checkedCount === 3) {
+                titleEl.innerText = "Almost Done!";
+                auditSummaryEl.innerText = "Incredible work! Just one evening habit left. Securing that streak and daily routine target is within arm's reach.";
+                streakCountEl.innerText = "5";
+            } else if (checkedCount === 4) {
+                titleEl.innerText = "Day Perfect! 🔥";
+                auditSummaryEl.innerText = "Perfect! Routine targets fully achieved. Your 5-day streak is officially secured and increments to 6 tomorrow morning. Sleep well!";
+                streakCountEl.innerText = "6";
+            }
+        }
+
+        // Initialize Date inside phone screen
+        (function() {
+            const dateObj = new Date();
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            
+            const dayName = days[dateObj.getDay()];
+            const monthName = months[dateObj.getMonth()];
+            const dayNum = dateObj.getDate();
+            
+            document.getElementById('phone-date-string').innerText = `${dayName}, ${monthName} ${dayNum}`;
+        })();
+
+        // 2. Interactive AI Coach Chat Sandbox Script
+        const coachAnswers = {
+            1: "<strong>☕ Conquering Morning Procrastination:</strong><br><br>The secret to hacking mornings is <strong>Habit Stacking</strong> and keeping barriers low.<br><br>1. <em>Create a Launchpad:</em> Set out your clothes/materials the night before so you start without thinking.<br><br>2. <em>The 2-Minute Rule:</em> Commit to meditating or reading for just two minutes. Once you start, momentum carries you.<br><br>3. <em>Stacking:</em> Bind the habit to your morning coffee: 'After my coffee details are set, I will immediately open my journal.'",
+            2: "<strong>🏋️ Gym Consistency Hacks:</strong><br><br>Most gym routines fail because of scheduling fatigue. Try this:<br><br>1. <em>Morning Sync:</em> Our AI data shows users are 30% more consistent on workouts performed before midday, as work distractions are lower.<br><br>2. <em>Visual Accountability:</em> Log your gym routines inside Habit App's <strong>Monthly Goal Logs</strong>. Storing qualitative feedback like 'felt energized' boosts emotional rewards, keeping you coming back.",
+            3: "<strong>📚 Practical Habit Stacking Guide:</strong><br><br>Habit stacking is anchoring a new routine directly onto an already established daily action.<br><br>The formula:<br><strong>After [Established Habit], I will [New Habit].</strong><br><br>Examples:<br>• <em>Reading:</em> 'After I close my morning alarm, I will read 10 pages immediately.'<br>• <em>Water intake:</em> 'After I sit at my office desk, I will fill a 1-Litre bottle.'"
+        };
+
+        function sendPrompt(btnElement, responseId) {
+            const chatMessagesContainer = document.getElementById('chat-messages-container');
+            const typingIndicator = document.getElementById('chat-typing-indicator');
+
+            // 1. Disable suggestion buttons temporarily
+            const buttons = document.querySelectorAll('.suggestion-btn');
+            buttons.forEach(btn => btn.disabled = true);
+
+            // 2. Append User Message
+            const userMsg = document.createElement('div');
+            userMsg.className = "chat-message cm-user";
+            userMsg.innerText = btnElement.innerText;
+            chatMessagesContainer.insertBefore(userMsg, typingIndicator);
+
+            // Scroll chat to bottom
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+
+            // 3. Show Typing Indicator
+            typingIndicator.style.display = "flex";
+            chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+
+            // 4. Simulate AI processing time
+            setTimeout(() => {
+                // Hide Typing Indicator
+                typingIndicator.style.display = "none";
+
+                // Append Coach response
+                const coachMsg = document.createElement('div');
+                coachMsg.className = "chat-message cm-coach";
+                coachMsg.innerHTML = coachAnswers[responseId];
+                chatMessagesContainer.insertBefore(coachMsg, typingIndicator);
+
+                // Enable buttons
+                buttons.forEach(btn => btn.disabled = false);
+
+                // Scroll to bottom
+                chatMessagesContainer.scrollTop = chatMessagesContainer.scrollHeight;
+            }, 1200);
+        }
+
+        // 3. Mobile Redirection Script
+        (function () {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isAndroid = /android/i.test(ua);
+            const mobileBtn = document.getElementById('mobile-hero-btn');
+            
+            if (isAndroid) {
+                mobileBtn.href = 'https://play.google.com/store/apps/details?id=one.qiy.habittracker';
+            } else {
+                mobileBtn.href = 'https://apps.apple.com/us/app/habit-tracker-daily-goal-app/id6758458198';
+            }
+        })();
+    </script>
+</body>
+
+</html>
