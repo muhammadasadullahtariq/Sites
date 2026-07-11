@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+
+    <!-- ── Primary SEO ── -->
+    <title>TypeSpend — Ultra-Fast Minimalist Expense Tracker</title>
+    <meta name="description" content="Stop tapping, just type. TypeSpend is an ultra-fast, minimalist expense tracker that lets you log multiple items in plain English. Fast, private, and zero friction.">
+    <link rel="canonical" href="https://typespend.linkapp.one/">
+    <meta name="keywords" content="expense tracker, minimalist finance app, natural language expense tracker, natural language logging, type to track expense, fast budget app, zero friction expense tracker, private expense tracker, type spend app, budget tracker, minimalist budget app, quick expense logger, text based expense tracker, personal finance manager, daily spending tracker, simple expense log, offline expense tracker, secure finance tracker, text budget manager, no login expense tracker, smart expense parser, rapid expense logger, quick budget planner, write expense log, money manager app, track spending fast, plain english expense tracker, fast money logger, simple finance tracker, track costs fast, spending diary app, easy expense tracker, minimalist money app, fast budget logger, no internet expense tracker, local storage finance app, type spending list, quick budget inputs, keyboard only expense tracker, speed expense tracking, personal money tracker, smart spending logger, expense recording app, log expenses in seconds, one line expense logger, expense typing tool, fast financial tracker, minimalist asset manager, budget ledger app, clean expense tracker, typespend, typespend app, text expense manager, natural language budget, parse spending text, smart cost tracker, daily expense manager, monthly budget tracker, easy money tracking, budget tracker widget, interactive budget app, financial logbook, digital pocket ledger, micro budgeting app, quick bookkeeper app, write budget journal, plain text budgeting, rapid financial logger, cost tracker without ads, best minimalist expense tracker, speed budgeting, direct input expense tracker, swift money tracker, instant budget logger, finance typing assistant, voice command expense alternative, fast spending diary, clean budget tracking, expense spreadsheet alternative, simple personal finance, quick coin tracker, easy budget tracker, manual expense tracker, privacy budget app, secure expense log, cloudless finance app, fast expense log mobile, typespend web app, minimalist cost controller, money logger plain text, swift budget entry, track cash spending, credit card spending tracker, transaction logger app, micro spending tracker, track expenses easily, simple pocket budget, daily financial diary, minimalist expense ledger, type spend, text budget, quick money manager, type spending tracking, fast pocket budget">
+    <meta name="author" content="Link App">
+    
+    <!-- ── Open Graph ── -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://typespend.linkapp.one/">
+    <meta property="og:title" content="TypeSpend — Ultra-Fast Minimalist Expense Tracker">
+    <meta property="og:description" content="Stop tapping through endless menus. Log expenses instantly in a single line using plain English. Get financial peace of mind.">
+    <meta property="og:image" content="app-icon.jpg">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ── Twitter / X Card ── -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TypeSpend — Ultra-Fast Minimalist Expense Tracker">
+    <meta name="twitter:description" content="Log expenses instantly by typing plain English. Zero friction, local-first privacy.">
+    <meta name="twitter:image" content="app-icon.jpg">
+
+    <!-- ── JSON-LD Structured Data ── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TypeSpend",
+      "operatingSystem": "iOS, Android",
+      "applicationCategory": "FinanceApplication",
+      "description": "An ultra-fast, minimalist expense tracker. Log multiple transactions by typing plain English in a single line directly from a widget.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Palette */
+            --primary: #0B3C2D;        /* Apple-esque Deep Forest Green */
+            --primary-hover: #052219;
+            --accent: #10B981;         /* Bright Mint */
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --bg-light: #F9FAF8;       /* Warm mint-tinted off-white */
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;      /* Dark slate */
+            --text-muted: #4B5563;     /* Muted grey */
+            --border-light: rgba(15, 23, 42, 0.06);
+            --border-glass: rgba(255, 255, 255, 0.6);
+            
+            /* Shadows */
+            --shadow-soft: 0 4px 20px -2px rgba(15, 23, 42, 0.03), 0 2px 8px -1px rgba(15, 23, 42, 0.01);
+            --shadow-medium: 0 12px 30px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.02);
+            --shadow-heavy: 0 30px 60px -15px rgba(15, 23, 42, 0.1), 0 10px 20px -5px rgba(15, 23, 42, 0.03);
+            --shadow-glow: 0 8px 30px rgba(16, 185, 129, 0.15);
+            
+            /* Transitions */
+            --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Border radius */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+        }
+
+        /* Ambient Glow System */
+        .ambient-glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.06) 0%, rgba(249, 250, 248, 0) 70%);
+            filter: blur(40px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .glow-top-right {
+            top: -200px;
+            right: -100px;
+        }
+
+        .glow-mid-left {
+            top: 45%;
+            left: -200px;
+        }
+
+        /* Modern CSS Reset */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Typography Utilities */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+        }
+
+        p {
+            color: var(--text-muted);
+        }
+
+        /* Structural Container */
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Glass Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: rgba(249, 250, 248, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            transition: var(--transition-smooth);
+        }
+
+        .header.scrolled {
+            height: 70px;
+            background: rgba(249, 250, 248, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.01em;
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover {
+            opacity: 0.9;
+        }
+
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            box-shadow: var(--shadow-soft);
+            object-fit: cover;
+            border: 1.5px solid rgba(11, 60, 45, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .btn-nav {
+            background: var(--primary);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(11, 60, 45, 0.15);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 100px 0;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .hero-content {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.15);
+            padding: 6px 14px;
+            border-radius: 100px;
+            color: #0d8a5e;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 0.01em;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 30%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 520px;
+            line-height: 1.6;
+        }
+
+        .hero-ctas {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--primary);
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
+            box-shadow: 0 4px 15px rgba(11, 60, 45, 0.1);
+        }
+
+        .btn-download.secondary {
+            background: #ffffff;
+            color: var(--primary);
+            border: 1.5px solid var(--border-light);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            background: var(--primary-hover);
+            box-shadow: 0 10px 25px rgba(11, 60, 45, 0.15);
+        }
+
+        .btn-download.secondary:hover {
+            background: #fdfdfd;
+            border-color: rgba(11, 60, 45, 0.2);
+            color: var(--primary-hover);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .btn-badge-svg {
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* Hero Image Area */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            border-radius: var(--radius-xl);
+            background: #ffffff;
+            padding: 16px;
+            box-shadow: var(--shadow-heavy);
+            border: 1px solid rgba(15, 23, 42, 0.04);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--radius-xl) - 8px);
+            background-color: var(--accent-glow);
+        }
+
+        /* Ambient floating elements */
+        .floating-tag {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid var(--border-glass);
+            box-shadow: var(--shadow-medium);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            z-index: 10;
+        }
+
+        .floating-tag span.amount {
+            color: var(--accent);
+        }
+
+        .tag-1 {
+            top: 20px;
+            left: -40px;
+            animation: floatSlow 7s ease-in-out infinite;
+        }
+
+        .tag-2 {
+            bottom: 40px;
+            right: -30px;
+            animation: floatSlow 5s ease-in-out 1s infinite;
+        }
+
+        .tag-3 {
+            top: 50%;
+            right: -60px;
+            animation: floatSlow 8s ease-in-out 0.5s infinite;
+        }
+
+        /* "The Magic" Demo Section */
+        .demo-section {
+            padding: 120px 0;
+            background: linear-gradient(to bottom, #FAFBF9 0%, #FFFFFF 100%);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 64px auto;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+        }
+
+        /* Simulated Mobile Phone Widget */
+        .widget-simulator {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-heavy);
+            border: 1px solid rgba(15, 23, 42, 0.05);
+            padding: 32px;
+            position: relative;
+        }
+
+        /* Mock Screen Widget Interface */
+        .widget-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .widget-title-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .widget-badge {
+            background: var(--primary);
+            color: #ffffff;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+
+        .widget-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .widget-status {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .widget-status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.8s infinite;
+        }
+
+        /* Widget Input Box */
+        .widget-input-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .widget-input {
+            width: 100%;
+            padding: 18px 56px 18px 20px;
+            border-radius: var(--radius-md);
+            border: 2px solid rgba(15, 23, 42, 0.08);
+            font-family: inherit;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-main);
+            background: var(--bg-light);
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .widget-input:focus {
+            border-color: var(--accent);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+        }
+
+        .widget-input-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: calc(var(--radius-md) - 4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            color: #ffffff;
+        }
+
+        .widget-input-btn:hover {
+            background: var(--primary-hover);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .widget-input-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+        }
+
+        /* Simulated typing prompt container */
+        .preset-prompts {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 28px;
+        }
+
+        .preset-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .btn-preset {
+            background: rgba(15, 23, 42, 0.03);
+            border: 1px solid var(--border-light);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition-smooth);
+        }
+
+        .btn-preset:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        /* Results Panel */
+        .results-panel {
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--border-light);
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1.5px dashed var(--border-light);
+        }
+
+        .results-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+        }
+
+        .results-total {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .results-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 120px;
+        }
+
+        .empty-results {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            height: 120px;
+            text-align: center;
+        }
+
+        .empty-results svg {
+            width: 32px;
+            height: 32px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            opacity: 0.5;
+        }
+
+        .expense-card {
+            background: #ffffff;
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(15, 23, 42, 0.03);
+            animation: slideUpFade 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .expense-card-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .expense-icon {
+            font-size: 1.3rem;
+            width: 36px;
+            height: 36px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expense-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .expense-desc {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .expense-cat {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .expense-amount {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        /* Benefits Grid Section */
+        .benefits {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .benefit-card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-medium);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .benefit-icon-container {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            background: rgba(16, 185, 129, 0.08);
+            border: 1.5px solid rgba(16, 185, 129, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+            color: var(--accent);
+        }
+
+        .benefit-icon-container svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--primary);
+        }
+
+        .benefit-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Call To Action Banner */
+        .cta-banner {
+            padding: 80px 0;
+            background: var(--primary);
+            color: #ffffff;
+            border-radius: var(--radius-xl);
+            margin-bottom: 120px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .cta-banner::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            right: -150px;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, rgba(16, 185, 129, 0) 70%);
+            pointer-events: none;
+        }
+
+        .cta-wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-title {
+            color: #ffffff;
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-desc {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            margin-bottom: 36px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-white {
+            background: #ffffff;
+            color: var(--primary);
+        }
+
+        .btn-white:hover {
+            background: #f3f4f6;
+            color: var(--primary-hover);
+        }
+
+        /* Minimalist Footer */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border-light);
+            padding: 60px 0;
+        }
+
+        .footer-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .footer-logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 7px;
+            object-fit: cover;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: var(--transition-smooth);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* Animations Keyframes */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes floatSlow {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(1deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        /* Responsiveness Media Queries */
+        @media (max-width: 992px) {
+            .hero {
+                padding-top: 140px;
+                padding-bottom: 80px;
+            }
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+                text-align: center;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-ctas {
+                justify-content: center;
+            }
+            .hero-visual {
+                order: -1;
+            }
+            .avatar-container {
+                width: 260px;
+                height: 260px;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .benefit-card {
+                padding: 30px;
+            }
+            .cta-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                height: 70px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-title {
+                font-size: 2.6rem;
+            }
+            .avatar-container {
+                width: 220px;
+                height: 220px;
+            }
+            .floating-tag {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            .tag-1 { left: -10px; top: 10px; }
+            .tag-2 { right: -10px; bottom: 20px; }
+            .tag-3 { display: none; }
+            .widget-simulator {
+                padding: 20px 16px;
+            }
+            .widget-input {
+                font-size: 0.95rem;
+                padding: 14px 48px 14px 16px;
+            }
+            .widget-input-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .btn-preset {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+            }
+            .cta-banner {
+                padding: 60px 20px;
+            }
+            .cta-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ── Dark Mode Default Theme Overrides ── */
+        :root {
+            --primary: #10B981;        /* Crisp Mint brand accent */
+            --primary-hover: #0D9488;  /* Slightly deeper mint on hover */
+            --accent: #34D399;         /* Vibrant mint highlight */
+            --accent-glow: rgba(16, 185, 129, 0.15);
+            --bg-light: #070908;       /* Apple-like Forest Black */
+            --bg-card: #111513;        /* Warm dark grey card */
+            --text-main: #F3F4F6;      /* Crisp text */
+            --text-muted: #9CA3AF;     /* Soft slate text */
+            --border-light: rgba(255, 255, 255, 0.08);
+            --border-glass: rgba(255, 255, 255, 0.12);
+            --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.4);
+            --shadow-medium: 0 12px 30px -4px rgba(0, 0, 0, 0.6);
+            --shadow-heavy: 0 30px 60px -15px rgba(0, 0, 0, 0.8);
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--text-main);
+        }
+
+        .header {
+            background: rgba(7, 9, 8, 0.8);
+        }
+
+        .header.scrolled {
+            background: rgba(7, 9, 8, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            color: var(--text-main);
+        }
+
+        .logo-img {
+            border: 1.5px solid var(--border-light);
+        }
+
+        .btn-nav, .widget-badge, .widget-input-btn {
+            color: #051E16;
+            font-weight: 700;
+        }
+
+        .btn-nav:hover, .widget-input-btn:hover {
+            color: #02120D;
+        }
+
+        .btn-download {
+            color: #051E16;
+            font-weight: 700;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-download:hover {
+            color: #02120D;
+        }
+
+        .btn-download.secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #ffffff;
+            border: 1.5px solid var(--border-glass);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-download.secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+
+        .avatar-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+        }
+
+        .floating-tag {
+            background: rgba(17, 22, 19, 0.85);
+            border: 1.5px solid var(--border-glass);
+            color: var(--text-main);
+        }
+
+        .demo-section {
+            background: linear-gradient(to bottom, #070908 0%, #0E1310 100%);
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .widget-simulator {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+        }
+
+        .widget-input:focus {
+            background: var(--bg-card);
+        }
+
+        .btn-preset {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-preset:hover {
+            color: #051E16;
+        }
+
+        .results-panel {
+            background: var(--bg-light);
+            border: 1px solid var(--border-light);
+        }
+
+        .expense-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+        }
+
+        .benefit-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+        }
+
+        .cta-banner {
+            background: #092119;
+            border: 1px solid var(--border-light);
+        }
+
+        .cta-banner::before {
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(16, 185, 129, 0) 70%);
+        }
+
+        .btn-white {
+            background: #ffffff;
+            color: #051E16;
+        }
+
+        .btn-white:hover {
+            background: #e2e8f0;
+            color: #02120D;
+        }
+
+        .footer {
+            background: var(--bg-light);
+            border-top: 1px solid var(--border-light);
+        }
+
+        .footer-logo {
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient background glows -->
+    <div class="ambient-glow glow-top-right"></div>
+    <div class="ambient-glow glow-mid-left"></div>
+
+    <!-- Header -->
+    <header class="header" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <a href="#" class="logo" aria-label="TypeSpend Home">
+                    <img src="app-icon.jpg" alt="TypeSpend App Icon" class="logo-img">
+                    <span>TypeSpend</span>
+                </a>
+                <nav class="nav-links" aria-label="Main Navigation">
+                    <a href="#demo" class="nav-link">How it Works</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="https://tomylink.co/dl/typespend" class="btn-nav">Download Now</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                
+                <!-- Hero Content -->
+                <div class="hero-content">
+                    <div class="badge">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: middle; margin-right: 4px;">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        Zero-friction finance tracker
+                    </div>
+                    <h1 class="hero-title">
+                        Stop Tapping.<br>
+                        <span class="gradient-text">Just Type.</span>
+                    </h1>
+                    <p class="hero-desc">
+                        Say goodbye to tapping through dozens of sub-menus just to log a single coffee. Log all your expenses instantly by typing them in plain English. Fast, private, and simple.
+                    </p>
+                    <div class="hero-ctas">
+                        <!-- App Store CTA Button -->
+                        <a href="https://tomylink.co/dl/typespend" class="btn-download" aria-label="Download on the App Store">
+                            <svg class="btn-badge-svg" viewBox="0 0 24 24">
+                                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.1,16.67C20.08,16.74 19.67,18.11 18.71,19.5M15.97,4.17C16.63,3.37 17.07,2.28 16.95,1C16,1.04 14.9,1.6 14.24,2.38C13.68,3.04 13.19,4.14 13.34,5.39C14.39,5.47 15.4,4.88 15.97,4.17Z"/>
+                            </svg>
+                            <span>App Store</span>
+                        </a>
+                        
+                        <!-- Google Play CTA Button -->
+                        <a href="https://tomylink.co/dl/typespend" class="btn-download secondary" aria-label="Get it on Google Play">
+                            <svg class="btn-badge-svg" viewBox="0 0 24 24">
+                                <path d="M3,5.27V18.73L16.55,12L3,5.27M17.87,11.33L21.05,12.92C21.56,13.18 21.56,13.9 21.05,14.15L17.87,15.74L16.03,13.8L17.87,11.33M3,3.41C3,3.07 3.42,2.89 3.68,3.1L18.4,10.61L16.56,13.08L3,3.41M3,20.59L16.56,10.92L18.4,13.39L3.68,20.9C3.42,21.11 3,20.93 3,20.59Z"/>
+                            </svg>
+                            <span>Google Play</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Visual Showcase -->
+                <div class="hero-visual">
+                    <div class="avatar-container">
+                        <img src="app-icon.jpg" alt="TypeSpend Bunny Mascot Character" class="avatar-img">
+                        
+                        <!-- Floating expense indicators -->
+                        <div class="floating-tag tag-1">
+                            <span>☕ Coffee</span>
+                            <span class="amount">$4.50</span>
+                        </div>
+                        <div class="floating-tag tag-2">
+                            <span>🍔 Lunch</span>
+                            <span class="amount">$15.00</span>
+                        </div>
+                        <div class="floating-tag tag-3">
+                            <span>🚗 Uber</span>
+                            <span class="amount">$22.40</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- "The Magic" Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            
+            <div class="section-header">
+                <span class="section-label">Interactive Demo</span>
+                <h2 class="section-title">Experience the Magic</h2>
+                <p class="section-desc">
+                    Type a sentence detailing what you spent money on. Watch our engine instantly breakdown, categorize, and sum up your logging.
+                </p>
+            </div>
+
+            <!-- Home Screen Widget Simulator -->
+            <div class="widget-simulator">
+                <div class="widget-header">
+                    <div class="widget-title-container">
+                        <div class="widget-badge">T</div>
+                        <span class="widget-name">TypeSpend Widget</span>
+                    </div>
+                    <div class="widget-status">
+                        <span class="widget-status-dot"></span>
+                        Ready to Log
+                    </div>
+                </div>
+
+                <!-- Expense Input Bar -->
+                <div class="widget-input-wrapper">
+                    <input type="text" id="demo-input" class="widget-input" placeholder="Type here (e.g. 15 for dinner, 4.50 for coffee)..." aria-label="Search/Logging input bar">
+                    <button id="demo-btn" class="widget-input-btn" aria-label="Log expenses button">
+                        <svg viewBox="0 0 24 24">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Clickable Presets -->
+                <div class="preset-prompts">
+                    <span class="preset-label">Try templates:</span>
+                    <button class="btn-preset" data-text="15 for lunch, 4.50 coffee">🍔 Lunch & Coffee</button>
+                    <button class="btn-preset" data-text="45 grocery, 22.80 taxi">🛒 Groceries & Taxi</button>
+                    <button class="btn-preset" data-text="120 utilities, 60 clothing, 12 book">💵 Subscriptions & Bills</button>
+                </div>
+
+                <!-- Transaction Log Output -->
+                <div class="results-panel">
+                    <div class="results-header">
+                        <span class="results-label">Simulated Log Preview</span>
+                        <span class="results-total" id="results-total">Total: $0.00</span>
+                    </div>
+                    <div class="results-list" id="results-list">
+                        <!-- Items rendered here by JS -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="features">
+        <div class="container">
+            
+            <div class="section-header">
+                <span class="section-label">Built for Speed</span>
+                <h2 class="section-title">Designed for Financial Clarity</h2>
+                <p class="section-desc">
+                    Most budgeting tools fail because logging feels like manual data entry. TypeSpend strips away the complexity to make tracking automatic.
+                </p>
+            </div>
+
+            <div class="benefits-grid">
+                <!-- Speed Card -->
+                <div class="benefit-card">
+                    <div class="benefit-icon-container">
+                        <!-- Speed SVG -->
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Sub-3 Second Entry</h3>
+                    <p class="benefit-desc">
+                        No loading loops, no navigating through multiple dropdowns. Open the home screen widget, type a line, and close the screen.
+                    </p>
+                </div>
+
+                <!-- Natural Parser Card -->
+                <div class="benefit-card">
+                    <div class="benefit-icon-container">
+                        <!-- AI Parser SVG -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">Natural Language Parsing</h3>
+                    <p class="benefit-desc">
+                        Our smart parser decodes normal sentences. You can write your logs naturally—currencies, categories, and items are parsed instantly.
+                    </p>
+                </div>
+
+                <!-- Privacy Card -->
+                <div class="benefit-card">
+                    <div class="benefit-icon-container">
+                        <!-- Privacy/Shield SVG -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="benefit-title">100% Local Privacy</h3>
+                    <p class="benefit-desc">
+                        Your transaction history belongs to you. All parsing and tracking databases are stored strictly offline on your own device.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="container" id="cta">
+        <div class="cta-banner">
+            <div class="cta-wrapper">
+                <h2 class="cta-title">Get Financial Peace of Mind</h2>
+                <p class="cta-desc">Download TypeSpend today. Available free on the Apple App Store and Google Play Store.</p>
+                <div class="cta-buttons">
+                    <a href="https://tomylink.co/dl/typespend" class="btn-download btn-white" aria-label="Download on App Store Link">
+                        <svg class="btn-badge-svg" viewBox="0 0 24 24" style="fill: currentColor;">
+                            <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.1,16.67C20.08,16.74 19.67,18.11 18.71,19.5M15.97,4.17C16.63,3.37 17.07,2.28 16.95,1C16,1.04 14.9,1.6 14.24,2.38C13.68,3.04 13.19,4.14 13.34,5.39C14.39,5.47 15.4,4.88 15.97,4.17Z"/>
+                        </svg>
+                        <span>App Store</span>
+                    </a>
+                    <a href="https://tomylink.co/dl/typespend" class="btn-download secondary" aria-label="Download on Google Play Store Link">
+                        <svg class="btn-badge-svg" viewBox="0 0 24 24" style="fill: currentColor;">
+                            <path d="M3,5.27V18.73L16.55,12L3,5.27M17.87,11.33L21.05,12.92C21.56,13.18 21.56,13.9 21.05,14.15L17.87,15.74L16.03,13.8L17.87,11.33M3,3.41C3,3.07 3.42,2.89 3.68,3.1L18.4,10.61L16.56,13.08L3,3.41M3,20.59L16.56,10.92L18.4,13.39L3.68,20.9C3.42,21.11 3,20.93 3,20.59Z"/>
+                        </svg>
+                        <span>Google Play</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-wrapper">
+                <a href="#" class="footer-logo">
+                    <img src="app-icon.jpg" alt="TypeSpend Logo Footer" class="footer-logo-img">
+                    <span>TypeSpend</span>
+                </a>
+                <nav class="footer-links" aria-label="Legal Navigation">
+                    <a href="#privacy" class="footer-link">Privacy Policy</a>
+                    <a href="#eula" class="footer-link">EULA (Terms of Service)</a>
+                </nav>
+                <p class="footer-text">
+                    &copy; 2026 Link App. All rights reserved. <br>
+                    Apple and the Apple logo are trademarks of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Simulator JS -->
+    <script>
+        // Header transparency scroll listener
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Parser keywords & setup
+        const categories = {
+            coffee: { icon: '☕', name: 'Drinks' },
+            tea: { icon: '🍵', name: 'Drinks' },
+            drink: { icon: '🥤', name: 'Drinks' },
+            beer: { icon: '🍺', name: 'Drinks' },
+            wine: { icon: '🍷', name: 'Drinks' },
+            lunch: { icon: '🍔', name: 'Lunch' },
+            dinner: { icon: '🍕', name: 'Dinner' },
+            food: { icon: '🍔', name: 'Food' },
+            breakfast: { icon: '🍳', name: 'Breakfast' },
+            restaurant: { icon: '🍽️', name: 'Dining Out' },
+            gas: { icon: '🚗', name: 'Gas / Fuel' },
+            fuel: { icon: '🚗', name: 'Gas / Fuel' },
+            taxi: { icon: '🚕', name: 'Transport' },
+            uber: { icon: '🚗', name: 'Transport' },
+            cab: { icon: '🚕', name: 'Transport' },
+            bus: { icon: '🚌', name: 'Transport' },
+            train: { icon: '🚆', name: 'Transport' },
+            grocery: { icon: '🛒', name: 'Groceries' },
+            groceries: { icon: '🛒', name: 'Groceries' },
+            supermarket: { icon: '🛒', name: 'Groceries' },
+            rent: { icon: '🏠', name: 'Rent' },
+            bill: { icon: '💵', name: 'Bills' },
+            utility: { icon: '💵', name: 'Bills' },
+            phone: { icon: '📱', name: 'Bills' },
+            internet: { icon: '🌐', name: 'Bills' },
+            book: { icon: '📚', name: 'Books / Education' },
+            books: { icon: '📚', name: 'Books / Education' },
+            school: { icon: '📚', name: 'Books / Education' },
+            shopping: { icon: '🛍️', name: 'Shopping' },
+            clothes: { icon: '👕', name: 'Shopping' },
+            gift: { icon: '🎁', name: 'Gifts' },
+            subscription: { icon: '🔄', name: 'Subscriptions' },
+            gym: { icon: '💪', name: 'Fitness / Health' },
+            health: { icon: '💊', name: 'Fitness / Health' },
+            movie: { icon: '🎬', name: 'Entertainment' },
+            game: { icon: '🎮', name: 'Entertainment' },
+            entertainment: { icon: '🍿', name: 'Entertainment' },
+            ticket: { icon: '🎫', name: 'Entertainment' }
+        };
+
+        const demoInput = document.getElementById('demo-input');
+        const demoBtn = document.getElementById('demo-btn');
+        const resultsList = document.getElementById('results-list');
+        const resultsTotal = document.getElementById('results-total');
+
+        // Main Parser Function
+        function parseInput(text) {
+            const parts = text.split(',');
+            const results = [];
+            
+            parts.forEach(part => {
+                const trimmed = part.trim();
+                if (!trimmed) return;
+                
+                // Find amounts (match numbers, decimals, optional preceding currency)
+                const amountMatch = trimmed.match(/(?:\$|£|€)?\s*(\d+(?:\.\d{1,2})?|\d+)/);
+                if (!amountMatch) return;
+                
+                const amount = parseFloat(amountMatch[1]);
+                if (isNaN(amount)) return;
+                
+                // Clean descriptor from the string
+                let desc = trimmed.replace(amountMatch[0], '').trim();
+                desc = desc.replace(/^(for|on|at|in|to)\s+/i, '').trim();
+                desc = desc.replace(/\s+(for|on|at|in|to)$/i, '').trim();
+                
+                if (!desc) {
+                    desc = 'General Spending';
+                }
+                
+                // Determine Category
+                let category = { icon: '💸', name: 'General' };
+                const descLower = desc.toLowerCase();
+                for (const [key, value] of Object.entries(categories)) {
+                    if (descLower.includes(key)) {
+                        category = value;
+                        break;
+                    }
+                }
+                
+                // Capitalize first letter
+                desc = desc.charAt(0).toUpperCase() + desc.slice(1);
+                
+                results.push({
+                    amount,
+                    desc,
+                    icon: category.icon,
+                    categoryName: category.name
+                });
+            });
+            
+            return results;
+        }
+
+        // Render parsed results
+        function updateResults(text) {
+            const items = parseInput(text);
+            resultsList.innerHTML = '';
+            
+            if (items.length === 0) {
+                resultsList.innerHTML = `
+                    <div class="empty-results">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <p>Type some expenses above to test the parsing engine.</p>
+                    </div>
+                `;
+                resultsTotal.textContent = 'Total: $0.00';
+                return;
+            }
+            
+            let grandTotal = 0;
+            items.forEach((item, index) => {
+                grandTotal += item.amount;
+                const card = document.createElement('div');
+                card.className = 'expense-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="expense-card-left">
+                        <div class="expense-icon">${item.icon}</div>
+                        <div class="expense-details">
+                            <span class="expense-desc">${item.desc}</span>
+                            <span class="expense-cat">${item.categoryName}</span>
+                        </div>
+                    </div>
+                    <span class="expense-amount">$${item.amount.toFixed(2)}</span>
+                `;
+                resultsList.appendChild(card);
+            });
+            
+            resultsTotal.textContent = `Total: $${grandTotal.toFixed(2)}`;
+        }
+
+        // Event listeners
+        demoInput.addEventListener('input', (e) => {
+            updateResults(e.target.value);
+        });
+
+        demoBtn.addEventListener('click', () => {
+            updateResults(demoInput.value);
+        });
+
+        demoInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                updateResults(demoInput.value);
+            }
+        });
+
+        // Clickable template prompts
+        document.querySelectorAll('.btn-preset').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const text = btn.getAttribute('data-text');
+                demoInput.value = text;
+                // Add minor focus styling & pulse feedback
+                demoInput.focus();
+                updateResults(text);
+            });
+        });
+
+        // Typing simulator for onboarding effect
+        let hasTyped = false;
+        function runSimulation() {
+            if (hasTyped) return;
+            const textToType = "15 lunch, 4.50 coffee, 120 grocery";
+            let index = 0;
+            demoInput.value = "";
+            
+            function typeNext() {
+                if (index < textToType.length) {
+                    demoInput.value += textToType[index];
+                    updateResults(demoInput.value);
+                    index++;
+                    setTimeout(typeNext, 70);
+                }
+            }
+            
+            typeNext();
+        }
+
+        // Run simulation after a delay when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initial empty screen
+            updateResults("");
+            
+            // Start simulation if user hasn't typed anything
+            setTimeout(() => {
+                if (demoInput.value === "") {
+                    runSimulation();
+                }
+            }, 1000);
+        });
+
+        // User typed manually: prevent simulation re-run
+        demoInput.addEventListener('keydown', () => {
+            hasTyped = true;
+        });
+        document.querySelectorAll('.btn-preset').forEach(btn => {
+            btn.addEventListener('click', () => {
+                hasTyped = true;
+            });
+        });
+    </script>
+</body>
+</html>
