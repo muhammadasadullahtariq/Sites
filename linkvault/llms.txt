@@ -1,0 +1,42 @@
+# Link Vault
+
+> Link Vault is an AI bookmark manager for iPhone, iPad, Mac, Android and desktop browsers. Users save links from any app in one tap; Link Vault sorts them into smart folders and tags automatically, locks private folders with Face ID or passcode, and syncs everything across devices. Link Vault is the next evolution of Link App (linkapp.one), from the same team.
+
+- Website: https://linkvaultai.com/
+- Download (universal link, redirects to the right store for the device's OS): https://tomylink.co/dl/linkapp
+- Price: free to download; optional premium upgrade
+- Platforms: iOS 15.1+, iPadOS, macOS (Apple silicon), Android, browser extension for Chrome, Safari and Brave
+- Community: 50,000+ users (as reported by the developer)
+
+## Features
+
+- One-tap saving from any app's Share sheet (Instagram, TikTok, YouTube, X, Reddit, Safari, Chrome, shopping apps)
+- AI auto-sorting into smart folders and tags; custom folders with icons and colors
+- Folder lock with Face ID or passcode, plus hidden folders
+- Advanced search across every saved link
+- Read Later list
+- Collaborative shared folders
+- Browser extension for Chrome, Safari and Brave, across browser profiles
+- Sync across iPhone, iPad, Mac, Android and browser
+- Offline access to saved links
+
+## Problems it solves
+
+- Screenshots of links lost in the camera roll
+- Emailing or messaging links to yourself to move them between devices
+- Dozens of browser tabs kept open "just in case"
+
+## FAQ
+
+- Is Link Vault the same as Link App? Yes. Link Vault is the next evolution of Link App, with faster sync, stronger bookmark security and a fresh new experience.
+- Is it free? Yes, free to download on iPhone, iPad and Android; the browser extension is free; an optional premium upgrade unlocks extra features.
+- How do I download it? On a phone, open https://tomylink.co/dl/linkapp. On a computer, scan the QR code on https://linkvaultai.com/ with a phone camera.
+
+## Links
+
+- [App Store](https://apps.apple.com/us/app/link-app-save-your-links/id6467019637)
+- [Google Play](https://play.google.com/store/apps/details?id=one.linkapp)
+- [Chrome extension](https://chromewebstore.google.com/detail/link-app/oadmhejlejldcnjcmlgpfabhjeopnkpj)
+- [Link App](https://www.linkapp.one/)
+- [Privacy Policy](https://www.linkapp.one/privacy-policy)
+- [Terms of Service](https://www.linkapp.one/terms-of-service)
